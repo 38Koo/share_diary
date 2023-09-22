@@ -1,3 +1,5 @@
+### FrontEnd
+
 ```bash
 $ cd share_diary
 $ npx create-next-app@latest frontend --typescript --eslint
@@ -22,3 +24,14 @@ $ npm install --save-dev jest @testing-library/react @testing-library/jest-dom j
 // tsconfig.json に下記追加
 // "types": ["node", "jest", "@testing-library/jest-dom"],
 ```
+
+### BackEnd
+
+// cd backend
+$ npm init -y
+$ npm install express
+$ npm i --save-dev @types/express
+$ npm install typescript --save-dev
+$ npm i --save-dev @types/node
+// 下記を参考に構築
+// https://reffect.co.jp/node-js/express-typescript/
