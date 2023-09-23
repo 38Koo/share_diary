@@ -23,6 +23,9 @@ $ npm i -D @storybook/addon-styling
 $ npm install --save-dev jest @testing-library/react @testing-library/jest-dom jest-environment-jsdom
 // tsconfig.json に下記追加
 // "types": ["node", "jest", "@testing-library/jest-dom"],
+
+// eslint
+$ npm i eslint-plugin-jsx-a11y --save-dev
 ```
 
 ### BackEnd
