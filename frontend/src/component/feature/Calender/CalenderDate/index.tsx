@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 import {
   Icon,
   IconProps,
@@ -9,7 +8,7 @@ type CalenderDateProps = {
   year: number
   month: number
   date: number
-  users: IconProps[] // FIXME: 他の条件に変更
+  users?: IconProps[] // FIXME: 他の条件に変更
 }
 
 export const CalenderDate = ({
@@ -22,7 +21,7 @@ export const CalenderDate = ({
     <div
       className={`
         h-24 w-24
-        border-2 border-solid
+        border border-solid
         border-black
       `}
     >
@@ -41,7 +40,7 @@ export const CalenderDate = ({
             />
           </div>
         ))}
-        {users.length > 2 && (
+        {users && users.length > 2 && (
           <Text>and more...</Text>
         )}
       </div>
