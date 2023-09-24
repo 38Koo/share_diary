@@ -1,4 +1,4 @@
-import { Icon } from '@/component/base/Icon/Icon'
+import { Icon } from '../component/base/Icon'
 
 export default function Home() {
   return (

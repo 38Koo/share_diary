@@ -1,13 +1,15 @@
 import Image from 'next/image'
 
-type IconProps = {
+export type IconProps = {
   imageUrl?: string
   unopend?: boolean
+  size?: 'normal' | 'small'
 }
 
 export const Icon = ({
   imageUrl,
   unopend = false,
+  size = 'normal',
 }: IconProps) => {
   return (
     <div
@@ -17,7 +19,12 @@ export const Icon = ({
           unopend
             ? `
               after:absolute 
-              after:right-1 after:top-1 after:h-3 after:w-3 
+              ${
+                size === 'normal'
+                  ? 'after:right-1 after:top-1'
+                  : 'after:-right-0 after:-top-0'
+              }
+               after:h-3 after:w-3 
               after:rounded-full after:bg-red-400 
               after:content-[""]
             `
@@ -28,12 +35,16 @@ export const Icon = ({
       <Image
         src={imageUrl ?? '/next.svg'}
         alt='ユーザーアイコン'
-        width={16}
-        height={16}
-        className='
-          h-16 w-16 rounded-full
+        width={size === 'normal' ? 16 : 8}
+        height={size === 'normal' ? 16 : 8}
+        className={`
+           ${
+             size === 'normal'
+               ? 'h-16 w-16'
+               : 'h-8 w-8'
+           }  rounded-full
           border-2 border-solid border-black bg-slate-300
-        '
+        `}
       />
     </div>
   )

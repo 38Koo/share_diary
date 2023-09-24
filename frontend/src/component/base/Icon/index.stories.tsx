@@ -1,6 +1,6 @@
 import { Title } from '@storybook/blocks'
 import { StoryObj } from '@storybook/react'
-import { Icon } from './Icon'
+import { Icon } from '.'
 
 export default {
   component: Icon,

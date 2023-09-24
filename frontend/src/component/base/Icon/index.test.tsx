@@ -2,7 +2,7 @@ import {
   render,
   screen,
 } from '@testing-library/react'
-import { Icon } from './Icon'
+import { Icon } from '.'
 import '@testing-library/jest-dom'
 
 describe('Icon', () => {
