@@ -2,18 +2,28 @@ import Image from 'next/image'
 
 type IconProps = {
   imageUrl?: string
+  unopend?: boolean
 }
 
-export const Icon = ({ imageUrl }: IconProps) => {
+export const Icon = ({
+  imageUrl,
+  unopend = false,
+}: IconProps) => {
   return (
     <div
-      className='
+      className={`
         relative inline-block
-        after:absolute 
-        after:right-1 after:top-1 after:h-3 after:w-3 
-        after:rounded-full after:bg-red-400 
-        after:content-[""]
-      '
+        ${
+          unopend
+            ? `
+              after:absolute 
+              after:right-1 after:top-1 after:h-3 after:w-3 
+              after:rounded-full after:bg-red-400 
+              after:content-[""]
+            `
+            : ''
+        }
+      `}
     >
       <Image
         src={imageUrl ?? '/next.svg'}

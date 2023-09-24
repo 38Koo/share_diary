@@ -16,6 +16,9 @@ type Story = StoryObj<typeof Icon>
 
 export const Default: Story = {
   args: {
-    // imageUrl: '/context.png',
+    imageUrl: '/context.png',
+    unopend: true,
   },
 }
+
+export const NoImage: Story = {}
