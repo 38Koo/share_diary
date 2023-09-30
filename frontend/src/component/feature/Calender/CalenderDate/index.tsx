@@ -9,14 +9,22 @@ type CalenderDateProps = {
   month: number
   date: number
   users?: IconProps[] // FIXME: 他の条件に変更
+  notThisMonth?: boolean
 }
 
+// TODO: height調整？
 export const CalenderDate = ({
   year,
   month,
   date,
   users,
+  notThisMonth,
 }: CalenderDateProps) => {
+  const thisDate = new Date(year, month, date)
+  const thisDay = thisDate.getDay()
+
+  console.log(`${date}:${thisDay}`)
+
   return (
     <div
       className={`
@@ -25,7 +33,22 @@ export const CalenderDate = ({
         border-black
       `}
     >
-      <Text size='text-xl'>
+      <Text
+        size='text-xl'
+        color={
+          thisDay === 0
+            ? notThisMonth
+              ? 'text-red-300'
+              : 'text-red-500'
+            : thisDay === 6
+            ? notThisMonth
+              ? 'text-blue-300'
+              : 'text-blue-500'
+            : notThisMonth
+            ? 'text-gray-400'
+            : 'text-black'
+        }
+      >
         {date.toString()}
       </Text>
       <div className='pl-1'>

@@ -50,11 +50,11 @@ export const DATE = [
 ] as const
 
 export const WEEKDAY = [
+  { name: '日', english: 'Sunday' },
   { name: '月', english: 'Monday' },
   { name: '火', english: 'Tuesday' },
   { name: '水', english: 'Wednesday' },
   { name: '木', english: 'Thursday' },
   { name: '金', english: 'Friday' },
   { name: '土', english: 'Saturday' },
-  { name: '日', english: 'Sunday' },
 ]
