@@ -3,7 +3,10 @@ type TextProps = {
   size?: 'text-base' | 'text-lg' | 'text-xl'
   color?:
     | 'text-black'
+    | 'text-gray-400'
     | 'text-red-500'
+    | 'text-red-300'
+    | 'text-blue-300'
     | 'text-blue-500'
 }
 

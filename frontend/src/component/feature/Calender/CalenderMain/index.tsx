@@ -1,34 +1,42 @@
-import { DATE } from '../../../../Const/const'
+import { WEEKDAY } from '../../../../Const/const'
 import { Text } from '../../../base/Text'
-import { CalenderDate } from '../CalenderDate'
+import { CalenderDateList } from '../CalenderDateList'
+
+type CalenderMainProps = {
+  year: number
+  month: number
+  date: number
+}
 
 export const CalenderMain = () => {
-  const date = new Date()
-  const thisMonth = date.getMonth() + 1
-
   return (
     <>
-      <Text>header</Text>
-      <div
-        className='
-          flex 
-          h-fit w-[674px] flex-row
-          flex-wrap
-          border border-solid border-black
-        '
-      >
-        {Array.from(
-          { length: DATE[thisMonth].days },
-          (_, i) => i + 1,
-        ).map((date) => (
-          <CalenderDate
-            key={date}
-            year={2020}
-            month={12}
-            date={date}
-          />
+      <div className='flex border border-solid border-black'>
+        {WEEKDAY.map((day, i) => (
+          <div
+            key={day.name}
+            className='
+              h-7 w-24
+              border border-solid border-black
+              text-center
+            '
+          >
+            {/* TODO: 土日の色分け */}
+            <Text
+              color={
+                i === 0
+                  ? 'text-red-500'
+                  : i === 6
+                  ? 'text-blue-500'
+                  : 'text-black'
+              }
+            >
+              {day.name}
+            </Text>
+          </div>
         ))}
       </div>
+      <CalenderDateList />
     </>
   )
 }
