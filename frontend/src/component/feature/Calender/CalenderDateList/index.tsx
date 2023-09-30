@@ -1,4 +1,4 @@
-import { DATE } from '../../../../Const/const'
+import { DATE } from '../../../../const/const'
 import { CalenderDate } from '../CalenderDate'
 
 export const CalenderDateList = () => {

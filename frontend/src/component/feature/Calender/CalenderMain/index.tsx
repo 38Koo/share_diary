@@ -1,4 +1,4 @@
-import { WEEKDAY } from '../../../../Const/const'
+import { WEEKDAY } from '../../../../const/const'
 import { Text } from '../../../base/Text'
 import { CalenderDateList } from '../CalenderDateList'
 
