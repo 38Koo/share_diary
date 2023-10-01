@@ -1,5 +1,7 @@
 import { Title } from '@storybook/blocks'
 import { Meta, StoryObj } from '@storybook/react'
+import { Provider } from 'react-redux'
+import { store } from '../../../../redux/store'
 import { CalenderMain } from '.'
 
 export default {
@@ -12,9 +14,15 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div className='w-[676px] border border-solid border-black'>
-        <Story year={2023} month={9} date={26} />
-      </div>
+      <Provider store={store}>
+        <div className='w-[676px] border border-solid border-black'>
+          <Story
+            year={2023}
+            month={10}
+            date={26}
+          />
+        </div>
+      </Provider>
     ),
   ],
 } as Meta<typeof CalenderMain>

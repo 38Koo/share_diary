@@ -1,14 +1,16 @@
-import { WEEKDAY } from '../../../../Const/const'
+import { WEEKDAY } from '../../../../const/const'
 import { Text } from '../../../base/Text'
-import { CalenderDateList } from '../CalenderDateList'
+import {
+  CalenderDateList,
+  CalenderDateListProps,
+} from '../CalenderDateList'
 
-type CalenderMainProps = {
-  year: number
-  month: number
-  date: number
-}
-
-export const CalenderMain = () => {
+export const CalenderMain = ({
+  year,
+  month,
+  date,
+}: CalenderDateListProps) => {
+  console.log(year, month, date)
   return (
     <>
       <div className='flex border border-solid border-black'>
@@ -36,7 +38,11 @@ export const CalenderMain = () => {
           </div>
         ))}
       </div>
-      <CalenderDateList />
+      <CalenderDateList
+        year={year}
+        month={month}
+        date={date}
+      />
     </>
   )
 }

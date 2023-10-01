@@ -23,8 +23,6 @@ export const CalenderDate = ({
   const thisDate = new Date(year, month, date)
   const thisDay = thisDate.getDay()
 
-  console.log(`${date}:${thisDay}`)
-
   return (
     <div
       className={`

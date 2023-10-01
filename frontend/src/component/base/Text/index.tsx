@@ -8,17 +8,20 @@ type TextProps = {
     | 'text-red-300'
     | 'text-blue-300'
     | 'text-blue-500'
+  verticalCenter?: boolean
 }
 
 export const Text = ({
   children,
   size = 'text-base',
   color = 'text-black',
+  verticalCenter = false,
 }: TextProps) => {
   return (
     <div
       className={`
         ${size} ${color}
+        ${verticalCenter ? 'leading-loose' : ''}
       `}
     >
       {children}
