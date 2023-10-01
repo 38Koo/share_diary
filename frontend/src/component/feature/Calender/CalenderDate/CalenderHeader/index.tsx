@@ -1,18 +1,52 @@
+import { useDispatch } from 'react-redux'
+import {
+  decrementMonth,
+  incrementMonth,
+} from '../../../../../redux/date/slice'
+import { ChevronLeftButton } from '../../../../base/Button/ChevronLeftButton'
+import { ChevronRightButton } from '../../../../base/Button/ChevronRightButton'
 import { Text } from '../../../../base/Text'
 
-export const CalenderHeader = () => {
+type CalenderHeaderProps = {
+  year: number
+  month: number
+}
+
+export const CalenderHeader = ({
+  year,
+  month,
+}: CalenderHeaderProps) => {
+  const dispatch = useDispatch()
+
+  const onClickPrevious = () => {
+    dispatch(decrementMonth())
+    console.log('OK!')
+  }
+  const onClickNext = () => {
+    dispatch(incrementMonth())
+    console.log('Next!')
+  }
+
   return (
-    <div className='h-16 space-x-64 border border-solid border-black text-center'>
-      <div className='inline-block text-black'>
-        ←
-      </div>
+    <div
+      className='
+        h-16 space-x-64
+        border border-solid border-black 
+        text-center
+      '
+    >
+      <ChevronLeftButton
+        onClick={onClickPrevious}
+      />
       <div className='inline-block'>
-        <Text size='text-xl'>2023年</Text>
-        <Text size='text-xl'>9月</Text>
+        <Text size='text-xl'>
+          {`${String(year)}年`}
+        </Text>
+        <Text size='text-xl'>{`${
+          month + 1
+        }月`}</Text>
       </div>
-      <div className='inline-block text-black'>
-        →
-      </div>
+      <ChevronRightButton onClick={onClickNext} />
     </div>
   )
 }

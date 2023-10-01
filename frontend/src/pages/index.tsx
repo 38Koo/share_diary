@@ -1,4 +1,5 @@
 import { Icon } from '../component/base/Icon'
+import { Calender } from '../component/feature/Calender'
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
         Hello world!
       </h1>
       <Icon />
+      <Calender />
     </>
   )
 }

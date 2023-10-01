@@ -1,5 +1,7 @@
 import { Title } from '@storybook/blocks'
 import { Meta, StoryObj } from '@storybook/react'
+import { Provider } from 'react-redux'
+import { store } from '../../../redux/store'
 import { Calender } from '.'
 
 export default {
@@ -10,6 +12,13 @@ export default {
       pages: () => <Title>/</Title>,
     },
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Story />
+      </Provider>
+    ),
+  ],
 } as Meta<typeof Calender>
 
 type Story = StoryObj<typeof Calender>

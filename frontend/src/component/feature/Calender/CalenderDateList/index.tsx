@@ -1,12 +1,27 @@
 import { DATE } from '../../../../const/const'
 import { CalenderDate } from '../CalenderDate'
 
-export const CalenderDateList = () => {
-  const thisDate = new Date(2023, 6, 1)
-  const thisLastDate = new Date(2023, 6, 31)
-  const thisMonth = thisDate.getMonth()
+export type CalenderDateListProps = {
+  year: number
+  month: number
+  date: number
+}
+
+export const CalenderDateList = ({
+  year,
+  month,
+  date,
+}: CalenderDateListProps) => {
+  const thisDate = new Date(year, month, 1)
+  const thisLastDate = new Date(
+    year,
+    month,
+    DATE[month].days,
+  )
   const thisDay = thisDate.getDay()
   const thisLastDay = thisLastDate.getDay()
+
+  console.log(month)
 
   const previousMonthCalender = () => {
     if (thisDay === 0) return <></>
@@ -14,15 +29,12 @@ export const CalenderDateList = () => {
     return Array.from(
       { length: thisDay },
       (_, i) =>
-        i +
-        DATE[thisMonth - 1].days -
-        thisDay +
-        1,
+        i + DATE[month - 1].days - thisDay + 1,
     ).map((date) => (
       <CalenderDate
         key={date}
-        year={2023}
-        month={5}
+        year={year}
+        month={month - 1}
         date={date}
         notThisMonth
       />
@@ -31,20 +43,19 @@ export const CalenderDateList = () => {
 
   const thisMonthCalender = () => {
     return Array.from(
-      { length: DATE[thisMonth].days },
+      { length: DATE[month].days },
       (_, i) => i + 1,
     ).map((date) => (
       <CalenderDate
         key={date}
-        year={2023}
-        month={6}
+        year={year}
+        month={month}
         date={date}
       />
     ))
   }
 
   const nextMonthCalender = () => {
-    console.log(thisLastDay)
     if (thisLastDay === 6) return null
 
     return Array.from(
@@ -53,8 +64,8 @@ export const CalenderDateList = () => {
     ).map((date) => (
       <CalenderDate
         key={date}
-        year={2023}
-        month={7}
+        year={year}
+        month={month + 1}
         date={date}
         notThisMonth
       />
