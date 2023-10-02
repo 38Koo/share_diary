@@ -7,6 +7,7 @@ export type FullDateState = {
   date: number
 }
 
+const PREVIOUS_LAST_YEAR = 2015
 const today = new Date()
 
 export const initialState: FullDateState = {
@@ -19,14 +20,47 @@ const dateSlice = createSlice({
   name: 'fullDate',
   initialState,
   reducers: {
-    incrementMonth: (state) => ({
-      ...state,
-      month: state.month + 1,
-    }),
-    decrementMonth: (state) => ({
-      ...state,
-      month: state.month - 1,
-    }),
+    incrementMonth: (state) => {
+      if (
+        state.year > today.getFullYear() &&
+        state.month >= today.getMonth()
+      )
+        return
+
+      if (state.month + 1 === 12)
+        return {
+          ...state,
+          year: state.year + 1,
+          month: 0,
+          date: 1,
+        }
+
+      return {
+        ...state,
+        month: state.month + 1,
+        date: 1,
+      }
+    },
+    decrementMonth: (state) => {
+      if (
+        state.year <= PREVIOUS_LAST_YEAR &&
+        state.month === 0
+      )
+        return
+
+      if (state.month === 0)
+        return {
+          ...state,
+          year: state.year - 1,
+          month: 11,
+          date: 1,
+        }
+      return {
+        ...state,
+        month: state.month - 1,
+        date: 1,
+      }
+    },
     incrementByAmount: (
       state,
       action: PayloadAction<number>,

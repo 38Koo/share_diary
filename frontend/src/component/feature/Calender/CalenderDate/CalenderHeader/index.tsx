@@ -10,11 +10,13 @@ import { Text } from '../../../../base/Text'
 type CalenderHeaderProps = {
   year: number
   month: number
+  date: number
 }
 
 export const CalenderHeader = ({
   year,
   month,
+  date,
 }: CalenderHeaderProps) => {
   const dispatch = useDispatch()
 
@@ -44,7 +46,7 @@ export const CalenderHeader = ({
         </Text>
         <Text size='text-xl'>{`${
           month + 1
-        }月`}</Text>
+        }月${date}日`}</Text>
       </div>
       <ChevronRightButton onClick={onClickNext} />
     </div>

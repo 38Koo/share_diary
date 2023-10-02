@@ -13,6 +13,7 @@ export const Calender = () => {
       <CalenderHeader
         year={fullDate.year}
         month={fullDate.month}
+        date={fullDate.date}
       />
       <CalenderText />
       <CalenderMain
