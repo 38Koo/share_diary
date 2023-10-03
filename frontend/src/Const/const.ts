@@ -1,3 +1,13 @@
+const currentDate = new Date()
+
+export const TODAY = {
+  year: currentDate.getFullYear(),
+  month: currentDate.getMonth(),
+  date: currentDate.getDate(),
+}
+
+export const MIN_YEAR = 2015
+
 export const DATE = [
   {
     name: 'January',

@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import {
+  MIN_YEAR,
+  TODAY,
+} from '../../const/const'
 
 export type FullDateState = {
   year: number
@@ -7,13 +11,10 @@ export type FullDateState = {
   date: number
 }
 
-const PREVIOUS_LAST_YEAR = 2015
-const today = new Date()
-
 export const initialState: FullDateState = {
-  year: today.getFullYear(),
-  month: today.getMonth(),
-  date: today.getDate(),
+  year: TODAY.year,
+  month: TODAY.month,
+  date: TODAY.date,
 }
 
 const dateSlice = createSlice({
@@ -22,10 +23,10 @@ const dateSlice = createSlice({
   reducers: {
     incrementMonth: (state) => {
       if (
-        state.year > today.getFullYear() &&
-        state.month >= today.getMonth()
+        state.year > TODAY.year &&
+        state.month >= TODAY.month
       )
-        return
+        throw new Error('out of range')
 
       if (state.month + 1 === 12)
         return {
@@ -43,10 +44,10 @@ const dateSlice = createSlice({
     },
     decrementMonth: (state) => {
       if (
-        state.year <= PREVIOUS_LAST_YEAR &&
+        state.year <= MIN_YEAR &&
         state.month === 0
       )
-        return
+        throw new Error('out of range')
 
       if (state.month === 0)
         return {
@@ -61,20 +62,28 @@ const dateSlice = createSlice({
         date: 1,
       }
     },
-    incrementByAmount: (
+    updateByAmount: (
       state,
       action: PayloadAction<number>,
-    ) => ({
-      ...state,
-      month: state.month + action.payload,
-    }),
+    ) => {
+      if (
+        action.payload > TODAY.year &&
+        state.month > TODAY.month
+      )
+        throw new Error('out of range')
+
+      return {
+        ...state,
+        year: action.payload,
+      }
+    },
   },
 })
 
 export const {
   incrementMonth,
   decrementMonth,
-  incrementByAmount,
+  updateByAmount,
 } = dateSlice.actions
 
 // TODO: anyやめる

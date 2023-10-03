@@ -10,7 +10,6 @@ export const CalenderMain = ({
   month,
   date,
 }: CalenderDateListProps) => {
-  console.log(year, month, date)
   return (
     <>
       <div className='flex border border-solid border-black'>
