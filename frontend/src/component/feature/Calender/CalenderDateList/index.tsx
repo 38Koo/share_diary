@@ -13,6 +13,7 @@ export const CalenderDateList = ({
   date,
 }: CalenderDateListProps) => {
   const thisDate = new Date(year, month, 1)
+
   // うるう年判定
   const isLeapYear = () => {
     if (year % 4 !== 0) return false
@@ -44,12 +45,12 @@ export const CalenderDateList = ({
           : 0) -
         thisDay +
         1,
-    ).map((date) => (
+    ).map((dateFromList) => (
       <CalenderDate
-        key={date}
-        year={year}
-        month={month - 1}
-        date={date}
+        key={dateFromList}
+        year={month === 0 ? year - 1 : year}
+        month={month === 0 ? 11 : month - 1}
+        date={dateFromList}
         notThisMonth
       />
     ))
@@ -65,12 +66,13 @@ export const CalenderDateList = ({
             : 0),
       },
       (_, i) => i + 1,
-    ).map((date) => (
+    ).map((dateFromList) => (
       <CalenderDate
-        key={date}
+        key={dateFromList}
         year={year}
         month={month}
-        date={date}
+        date={dateFromList}
+        selected={dateFromList === date}
       />
     ))
   }
@@ -81,12 +83,12 @@ export const CalenderDateList = ({
     return Array.from(
       { length: 6 - thisLastDay },
       (_, i) => i + 1,
-    ).map((date) => (
+    ).map((dateFromList) => (
       <CalenderDate
-        key={date}
-        year={year}
-        month={month + 1}
-        date={date}
+        key={dateFromList}
+        year={month === 11 ? year + 1 : year}
+        month={month === 11 ? 0 : month + 1}
+        date={dateFromList}
         notThisMonth
       />
     ))

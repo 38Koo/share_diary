@@ -4,7 +4,7 @@ import { TODAY } from '../../../../../const/const'
 import {
   decrementMonth,
   incrementMonth,
-  updateByAmount,
+  updateYearByAmount,
 } from '../../../../../redux/date/slice'
 import { ChevronLeftButton } from '../../../../base/Button/ChevronLeftButton'
 import { ChevronRightButton } from '../../../../base/Button/ChevronRightButton'
@@ -46,7 +46,7 @@ export const CalenderHeader = ({
 
   const onChangeYear = (selectYear: number) => {
     try {
-      dispatch(updateByAmount(selectYear))
+      dispatch(updateYearByAmount(selectYear))
 
       setSelectCount(selectYear)
     } catch (e) {

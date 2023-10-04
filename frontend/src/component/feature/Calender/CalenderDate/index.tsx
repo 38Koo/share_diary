@@ -1,3 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import { useDispatch } from 'react-redux'
+import {
+  updateDateByClick,
+  updateFullDateByClick,
+} from '../../../../redux/date/slice'
 import {
   Icon,
   IconProps,
@@ -10,6 +16,7 @@ type CalenderDateProps = {
   date: number
   users?: IconProps[] // FIXME: 他の条件に変更
   notThisMonth?: boolean
+  selected?: boolean
 }
 
 // TODO: height調整？
@@ -19,17 +26,44 @@ export const CalenderDate = ({
   date,
   users,
   notThisMonth,
+  selected,
 }: CalenderDateProps) => {
   const thisDate = new Date(year, month, date)
   const thisDay = thisDate.getDay()
 
+  const dispatch = useDispatch()
+  const onClick = () => {
+    console.log(month)
+    try {
+      if (notThisMonth) {
+        dispatch(
+          updateFullDateByClick({
+            year: year,
+            month: month,
+            date: date,
+          }),
+        )
+      } else {
+        dispatch(updateDateByClick(date))
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
       className={`
         h-24 w-24
-        border border-solid
-        border-black
+         border-solid
+      ${
+        selected
+          ? 'border-2 border-red-300'
+          : 'border border-black'
+      }
       `}
+      onClick={onClick}
     >
       <Text
         size='text-xl'
