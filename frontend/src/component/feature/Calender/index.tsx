@@ -18,7 +18,7 @@ export const Calender = () => {
       <CalenderMain
         year={fullDate.year}
         month={fullDate.month}
-        date={fullDate.month}
+        date={fullDate.date}
       />
     </div>
   )
