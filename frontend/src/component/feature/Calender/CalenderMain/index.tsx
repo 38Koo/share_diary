@@ -12,7 +12,7 @@ export const CalenderMain = ({
 }: CalenderDateListProps) => {
   return (
     <>
-      <div className='flex border border-solid border-black'>
+      <div className='box-border flex w-[672px] border border-solid border-black'>
         {WEEKDAY.map((day, i) => (
           <div
             key={day.name}
