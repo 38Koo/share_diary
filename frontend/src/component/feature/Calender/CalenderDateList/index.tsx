@@ -98,9 +98,8 @@ export const CalenderDateList = ({
     <div
       className='
           flex 
-          h-fit w-fit flex-row
-          flex-wrap
-          border border-solid border-black
+          h-fit w-[672px] flex-row
+          flex-wrap 
         '
     >
       {previousMonthCalender()}

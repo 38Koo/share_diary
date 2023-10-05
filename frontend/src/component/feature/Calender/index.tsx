@@ -8,7 +8,7 @@ export const Calender = () => {
   const fullDate = useSelector(selectDate)
 
   return (
-    <div className='w-[676px] border border-solid border-black'>
+    <div className='w-[672px] border border-solid border-black'>
       <CalenderHeader
         year={fullDate.year}
         month={fullDate.month}

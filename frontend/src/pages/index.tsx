@@ -8,7 +8,9 @@ export default function Home() {
         Hello world!
       </h1>
       <Icon />
-      <Calender />
+      <div className='flex justify-center'>
+        <Calender />
+      </div>
     </>
   )
 }
