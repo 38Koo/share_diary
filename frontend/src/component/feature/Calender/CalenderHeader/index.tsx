@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { TODAY } from '../../../../../const/const'
+import { TODAY } from '../../../../const/const'
 import {
   decrementMonth,
   incrementMonth,
   updateYearByAmount,
-} from '../../../../../redux/date/slice'
-import { ChevronLeftButton } from '../../../../base/Button/ChevronLeftButton'
-import { ChevronRightButton } from '../../../../base/Button/ChevronRightButton'
-import { Text } from '../../../../base/Text'
-import { canSelectableYear } from '../../utils/canSelectableYear'
+} from '../../../../redux/date/slice'
+import { ChevronLeftButton } from '../../../base/Button/ChevronLeftButton'
+import { ChevronRightButton } from '../../../base/Button/ChevronRightButton'
+import { Text } from '../../../base/Text'
+import { canSelectableYear } from '../utils/canSelectableYear'
 
 type CalenderHeaderProps = {
   year: number

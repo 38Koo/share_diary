@@ -7,6 +7,11 @@ export default function App({
   Component,
   pageProps,
 }: AppProps) {
+  if (process.env.NODE_ENV === 'development') {
+    const { worker } = require('../mocks/browser')
+    worker.start()
+  }
+
   return (
     <Provider store={store}>
       <Component {...pageProps} />
