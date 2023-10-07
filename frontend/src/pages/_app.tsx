@@ -8,8 +8,10 @@ export default function App({
   pageProps,
 }: AppProps) {
   if (process.env.NODE_ENV === 'development') {
-    const { worker } = require('../mocks/browser')
-    worker.start()
+    const MockServer = () =>
+      import('../mocks/worker')
+
+    MockServer()
   }
 
   return (
