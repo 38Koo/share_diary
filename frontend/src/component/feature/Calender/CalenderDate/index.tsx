@@ -2,24 +2,21 @@
 import { useDispatch } from 'react-redux'
 import {
   updateDateByClick,
-  updateFullDateByClick,
+  updateDateWithoutDayByClick,
 } from '../../../../redux/date/slice'
+import { DateWithoutDay } from '../../../../types/types'
 import {
   Icon,
   IconProps,
 } from '../../../base/Icon'
 import { Text } from '../../../base/Text'
 
-type CalenderDateProps = {
-  year: number
-  month: number
-  date: number
+type CalenderDateProps = DateWithoutDay & {
   users?: IconProps[] // FIXME: 他の条件に変更
   notThisMonth?: boolean
   selected?: boolean
 }
 
-// TODO: height調整？
 export const CalenderDate = ({
   year,
   month,
@@ -32,12 +29,22 @@ export const CalenderDate = ({
   const thisDay = thisDate.getDay()
 
   const dispatch = useDispatch()
-  const onClick = () => {
-    console.log(month)
+  const onClick = async () => {
+    const a = await fetch('/user')
+      .then((status) => {
+        if (!status.ok) {
+          throw new Error()
+        }
+
+        return status.json()
+      })
+      .then((res) => console.log(res.userName))
+    console.log(a)
+    console.log(month + 1)
     try {
       if (notThisMonth) {
         dispatch(
-          updateFullDateByClick({
+          updateDateWithoutDayByClick({
             year: year,
             month: month,
             date: date,

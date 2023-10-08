@@ -1,6 +1,8 @@
+import { DateWithoutDay } from '../types/types'
+
 const currentDate = new Date()
 
-export const TODAY = {
+export const TODAY: DateWithoutDay = {
   year: currentDate.getFullYear(),
   month: currentDate.getMonth(),
   date: currentDate.getDate(),
