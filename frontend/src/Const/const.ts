@@ -69,4 +69,4 @@ export const WEEKDAY = [
   { name: '木', english: 'Thursday' },
   { name: '金', english: 'Friday' },
   { name: '土', english: 'Saturday' },
-]
+] as const
