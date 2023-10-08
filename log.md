@@ -28,7 +28,12 @@ $ npm install --save-dev jest @testing-library/react @testing-library/jest-dom j
 $ npm i eslint-plugin-jsx-a11y --save-dev
 $ npm i --save-dev eslint-plugin-tailwindcss prettier-plugin-tailwindcss
 
+// Redux
 $ npm install @reduxjs/toolkit redux react-redux
+
+// msw
+$ npm install msw --save-dev
+$ npx msw init public/ --save
 ```
 
 ### BackEnd

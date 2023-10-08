@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { selectDate } from '../../../redux/date/slice'
-import { CalenderHeader } from './CalenderDate/CalenderHeader'
+import { CalenderHeader } from './CalenderHeader'
 import { CalenderMain } from './CalenderMain'
 import { CalenderText } from './CalenderText'
 
