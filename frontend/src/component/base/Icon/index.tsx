@@ -6,8 +6,6 @@ export type IconProps = {
   size?: 'normal' | 'small'
 }
 
-// TODO: 今日日付の場合にマーク
-
 export const Icon = ({
   imageUrl,
   unopend = false,
