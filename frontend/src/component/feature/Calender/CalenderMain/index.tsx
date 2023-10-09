@@ -2,6 +2,7 @@ import { WEEKDAY } from '../../../../const/const'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { CalenderDateList } from '../CalenderDateList'
+import { getColor } from '../utils/getColor'
 
 export const CalenderMain = ({
   year,
@@ -21,15 +22,7 @@ export const CalenderMain = ({
             '
           >
             {/* TODO: 土日の色分け */}
-            <Text
-              color={
-                i === 0
-                  ? 'text-red-500'
-                  : i === 6
-                  ? 'text-blue-500'
-                  : 'text-black'
-              }
-            >
+            <Text color={getColor(i, true)}>
               {day.name}
             </Text>
           </div>

@@ -2,7 +2,7 @@
 import { DateWithoutDay } from '../../../../types/types'
 import { IconProps } from '../../../base/Icon'
 import { Text } from '../../../base/Text'
-import { getColor } from '../CalenderDateList/helper/getColor'
+import { getColor } from '../utils/getColor'
 import { CalenderUserIcons } from './CalenderUserIcons'
 
 type CalenderDateProps = DateWithoutDay & {

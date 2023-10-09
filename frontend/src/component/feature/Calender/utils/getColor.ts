@@ -1,8 +1,8 @@
 import {
   FullDate,
   WEEKDAY_NAME,
-} from '../../../../../types/types'
-import { TextProps } from '../../../../base/Text'
+} from '../../../../types/types'
+import { TextProps } from '../../../base/Text'
 
 export const getColor = (
   day: FullDate['day'],
