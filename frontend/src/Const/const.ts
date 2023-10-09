@@ -1,6 +1,8 @@
+import { DateWithoutDay } from '../types/types'
+
 const currentDate = new Date()
 
-export const TODAY = {
+export const TODAY: DateWithoutDay = {
   year: currentDate.getFullYear(),
   month: currentDate.getMonth(),
   date: currentDate.getDate(),
@@ -67,4 +69,4 @@ export const WEEKDAY = [
   { name: '木', english: 'Thursday' },
   { name: '金', english: 'Friday' },
   { name: '土', english: 'Saturday' },
-]
+] as const

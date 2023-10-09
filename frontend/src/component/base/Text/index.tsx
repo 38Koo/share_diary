@@ -1,4 +1,4 @@
-type TextProps = {
+export type TextProps = {
   children: string
   size?: 'text-base' | 'text-lg' | 'text-xl'
   color?:

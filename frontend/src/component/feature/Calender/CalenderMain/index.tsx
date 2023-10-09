@@ -1,15 +1,13 @@
 import { WEEKDAY } from '../../../../const/const'
+import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
-import {
-  CalenderDateList,
-  CalenderDateListProps,
-} from '../CalenderDateList'
+import { CalenderDateList } from '../CalenderDateList'
 
 export const CalenderMain = ({
   year,
   month,
   date,
-}: CalenderDateListProps) => {
+}: DateWithoutDay) => {
   return (
     <>
       <div className='box-border flex w-[672px] border border-solid border-black'>

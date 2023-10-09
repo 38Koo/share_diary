@@ -1,99 +1,13 @@
-import { DATE } from '../../../../const/const'
-import { CalenderDate } from '../CalenderDate'
-
-export type CalenderDateListProps = {
-  year: number
-  month: number
-  date: number
-}
+import { DateWithoutDay } from '../../../../types/types'
+import { CalenderNextMonth } from './CalenderNextMonth'
+import { CalenderPreviousMonth } from './CalenderPreviousMonth'
+import { CalenderThisMonth } from './CalenderThisMonth'
 
 export const CalenderDateList = ({
   year,
   month,
   date,
-}: CalenderDateListProps) => {
-  const thisDate = new Date(year, month, 1)
-
-  // うるう年判定
-  const isLeapYear = () => {
-    if (year % 4 !== 0) return false
-
-    if (year % 100 === 0 && year % 400 !== 0)
-      return false
-
-    return true
-  }
-  const thisLastDate = new Date(
-    year,
-    month,
-    DATE[month].days -
-      (month + 1 === 2 && !isLeapYear() ? 1 : 0),
-  )
-  const thisDay = thisDate.getDay()
-  const thisLastDay = thisLastDate.getDay()
-
-  const previousMonthCalender = () => {
-    if (thisDay === 0) return <></>
-
-    return Array.from(
-      { length: thisDay },
-      (_, i) =>
-        i +
-        DATE[month === 0 ? 11 : month - 1].days -
-        (month + 1 === 3 && !isLeapYear()
-          ? 1
-          : 0) -
-        thisDay +
-        1,
-    ).map((dateFromList) => (
-      <CalenderDate
-        key={dateFromList}
-        year={month === 0 ? year - 1 : year}
-        month={month === 0 ? 11 : month - 1}
-        date={dateFromList}
-        notThisMonth
-      />
-    ))
-  }
-
-  const thisMonthCalender = () => {
-    return Array.from(
-      {
-        length:
-          DATE[month].days -
-          (month + 1 === 2 && !isLeapYear()
-            ? 1
-            : 0),
-      },
-      (_, i) => i + 1,
-    ).map((dateFromList) => (
-      <CalenderDate
-        key={dateFromList}
-        year={year}
-        month={month}
-        date={dateFromList}
-        selected={dateFromList === date}
-      />
-    ))
-  }
-
-  const nextMonthCalender = () => {
-    if (thisLastDay === 6) return null
-
-    return Array.from(
-      { length: 6 - thisLastDay },
-      (_, i) => i + 1,
-    ).map((dateFromList) => (
-      <CalenderDate
-        key={dateFromList}
-        year={month === 11 ? year + 1 : year}
-        month={month === 11 ? 0 : month + 1}
-        date={dateFromList}
-        notThisMonth
-      />
-    ))
-  }
-
+}: DateWithoutDay) => {
   return (
     <div
       className='
@@ -102,9 +16,19 @@ export const CalenderDateList = ({
           flex-wrap 
         '
     >
-      {previousMonthCalender()}
-      {thisMonthCalender()}
-      {nextMonthCalender()}
+      <CalenderPreviousMonth
+        year={year}
+        month={month}
+      />
+      <CalenderThisMonth
+        year={year}
+        month={month}
+        date={date}
+      />
+      <CalenderNextMonth
+        year={year}
+        month={month}
+      />
     </div>
   )
 }

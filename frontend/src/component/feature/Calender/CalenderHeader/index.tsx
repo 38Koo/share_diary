@@ -6,22 +6,17 @@ import {
   incrementMonth,
   updateYearByAmount,
 } from '../../../../redux/date/slice'
+import { DateWithoutDay } from '../../../../types/types'
 import { ChevronLeftButton } from '../../../base/Button/ChevronLeftButton'
 import { ChevronRightButton } from '../../../base/Button/ChevronRightButton'
 import { Text } from '../../../base/Text'
 import { canSelectableYear } from '../utils/canSelectableYear'
 
-type CalenderHeaderProps = {
-  year: number
-  month: number
-  date: number
-}
-
 export const CalenderHeader = ({
   year,
   month,
   date,
-}: CalenderHeaderProps) => {
+}: DateWithoutDay) => {
   const [selectCount, setSelectCount] = useState(
     TODAY.year,
   )
