@@ -3,16 +3,16 @@ import { DateWithoutDay } from '../../../../types/types'
 import { IconProps } from '../../../base/Icon'
 import { Text } from '../../../base/Text'
 import { getColor } from '../utils/getColor'
-import { CalenderUserIcons } from './CalenderUserIcons'
+import { CalendarUserIcons } from './CalendarUserIcons'
 
-type CalenderDateProps = DateWithoutDay & {
+type CalendarDateProps = DateWithoutDay & {
   users?: IconProps[] // FIXME: 他の条件に変更
   onClick: () => void
   isThisMonth?: boolean
   selected?: boolean
 }
 
-export const CalenderDate = ({
+export const CalendarDate = ({
   year,
   month,
   date,
@@ -20,7 +20,7 @@ export const CalenderDate = ({
   isThisMonth = false,
   selected,
   onClick,
-}: CalenderDateProps) => {
+}: CalendarDateProps) => {
   const thisDate = new Date(year, month, date)
   const thisDay = thisDate.getDay()
 
@@ -45,7 +45,7 @@ export const CalenderDate = ({
         {date.toString()}
       </Text>
       {!!users && users.length > 0 && (
-        <CalenderUserIcons users={users} />
+        <CalendarUserIcons users={users} />
       )}
     </div>
   )

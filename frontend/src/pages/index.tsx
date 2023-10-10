@@ -1,5 +1,5 @@
 import { Icon } from '../component/base/Icon'
-import { Calender } from '../component/feature/Calender'
+import { Calendar } from '../component/feature/Calendar'
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
       </h1>
       <Icon />
       <div className='flex justify-center'>
-        <Calender />
+        <Calendar />
       </div>
     </>
   )

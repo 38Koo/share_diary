@@ -5,19 +5,19 @@ import {
   MONTH_NAME,
   WEEKDAY_NAME,
 } from '../../../../../types/types'
-import { CalenderDate } from '../../CalenderDate'
+import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
 import { onClickFromNotThisMonth } from '../helper/onClickFromNotThisMonth'
 
-type CalenderPreviousMonthProps = Omit<
+type CalendarPreviousMonthProps = Omit<
   DateWithoutDay,
   'date'
 >
 
-export const CalenderPreviousMonth = ({
+export const CalendarPreviousMonth = ({
   year,
   month,
-}: CalenderPreviousMonthProps) => {
+}: CalendarPreviousMonthProps) => {
   const thisMonthFirstDate = new Date(
     year,
     month,
@@ -63,7 +63,7 @@ export const CalenderPreviousMonth = ({
     { length: dayOfthisMonthFirstDate },
     (_, i) => getDisplayDatesLength(i),
   ).map((dateFromList) => (
-    <CalenderDate
+    <CalendarDate
       key={dateFromList}
       year={
         month === MONTH_NAME.JANUARY

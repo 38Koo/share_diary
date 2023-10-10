@@ -4,13 +4,13 @@ import {
 } from '../../../../base/Icon'
 import { Text } from '../../../../base/Text'
 
-type CalenderUserIconsProps = {
+type CalendarUserIconsProps = {
   users?: IconProps[] // FIXME: 他の条件に変更
 }
 
-export const CalenderUserIcons = ({
+export const CalendarUserIcons = ({
   users,
-}: CalenderUserIconsProps) => {
+}: CalendarUserIconsProps) => {
   return (
     <>
       <div className='pl-1'>

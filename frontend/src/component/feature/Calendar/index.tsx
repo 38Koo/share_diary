@@ -1,23 +1,23 @@
 import { useSelector } from 'react-redux'
 import { selectDate } from '../../../redux/date/slice'
 import { DateWithoutDay } from '../../../types/types'
-import { CalenderHeader } from './CalenderHeader'
-import { CalenderMain } from './CalenderMain'
-import { CalenderText } from './CalenderText'
+import { CalendarHeader } from './CalendarHeader'
+import { CalendarMain } from './CalendarMain'
+import { CalendarText } from './CalendarText'
 
-export const Calender = () => {
+export const Calendar = () => {
   const dateWithoutDay: DateWithoutDay =
     useSelector(selectDate)
 
   return (
     <div className='w-[672px] border border-solid border-black'>
-      <CalenderHeader
+      <CalendarHeader
         year={dateWithoutDay.year}
         month={dateWithoutDay.month}
         date={dateWithoutDay.date}
       />
-      <CalenderText />
-      <CalenderMain
+      <CalendarText />
+      <CalendarMain
         year={dateWithoutDay.year}
         month={dateWithoutDay.month}
         date={dateWithoutDay.date}

@@ -4,11 +4,11 @@ import {
   DateWithoutDay,
   MONTH_NAME,
 } from '../../../../../types/types'
-import { CalenderDate } from '../../CalenderDate'
+import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
 import { onClickFromThisMonth } from '../helper/onClickFromThisMonth'
 
-export const CalenderThisMonth = ({
+export const CalendarThisMonth = ({
   year,
   month,
   date,
@@ -32,7 +32,7 @@ export const CalenderThisMonth = ({
     },
     (_, i) => i + 1,
   ).map((dateFromList) => (
-    <CalenderDate
+    <CalendarDate
       key={dateFromList}
       year={year}
       month={month}
