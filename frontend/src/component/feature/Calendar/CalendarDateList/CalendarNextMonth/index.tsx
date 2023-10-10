@@ -5,19 +5,19 @@ import {
   MONTH_NAME,
   WEEKDAY_NAME,
 } from '../../../../../types/types'
-import { CalenderDate } from '../../CalenderDate'
+import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
 import { onClickFromNotThisMonth } from '../helper/onClickFromNotThisMonth'
 
-type CalenderNextMonthProps = Omit<
+type CalendarNextMonthProps = Omit<
   DateWithoutDay,
   'date'
 >
 
-export const CalenderNextMonth = ({
+export const CalendarNextMonth = ({
   year,
   month,
-}: CalenderNextMonthProps) => {
+}: CalendarNextMonthProps) => {
   const thisMonthLastDate = new Date(
     year,
     month,
@@ -47,7 +47,7 @@ export const CalenderNextMonth = ({
     },
     (_, i) => i + 1,
   ).map((dateFromList) => (
-    <CalenderDate
+    <CalendarDate
       key={dateFromList}
       year={
         month === MONTH_NAME.NOVEMBER

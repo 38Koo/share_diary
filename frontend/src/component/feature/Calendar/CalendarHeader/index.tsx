@@ -12,7 +12,7 @@ import { ChevronRightButton } from '../../../base/Button/ChevronRightButton'
 import { Text } from '../../../base/Text'
 import { canSelectableYear } from '../utils/canSelectableYear'
 
-export const CalenderHeader = ({
+export const CalendarHeader = ({
   year,
   month,
   date,

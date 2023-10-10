@@ -2,10 +2,10 @@ import { Title } from '@storybook/blocks'
 import { Meta, StoryObj } from '@storybook/react'
 import { Provider } from 'react-redux'
 import { store } from '../../../../redux/store'
-import { CalenderMain } from '.'
+import { CalendarMain } from '.'
 
 export default {
-  component: CalenderMain,
+  component: CalendarMain,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -25,8 +25,8 @@ export default {
       </Provider>
     ),
   ],
-} as Meta<typeof CalenderMain>
+} as Meta<typeof CalendarMain>
 
-type Story = StoryObj<typeof CalenderMain>
+type Story = StoryObj<typeof CalendarMain>
 
 export const Default: Story = {}

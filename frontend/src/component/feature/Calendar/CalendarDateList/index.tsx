@@ -1,9 +1,9 @@
 import { DateWithoutDay } from '../../../../types/types'
-import { CalenderNextMonth } from './CalenderNextMonth'
-import { CalenderPreviousMonth } from './CalenderPreviousMonth'
-import { CalenderThisMonth } from './CalenderThisMonth'
+import { CalendarNextMonth } from './CalendarNextMonth'
+import { CalendarPreviousMonth } from './CalendarPreviousMonth'
+import { CalendarThisMonth } from './CalendarThisMonth'
 
-export const CalenderDateList = ({
+export const CalendarDateList = ({
   year,
   month,
   date,
@@ -16,16 +16,16 @@ export const CalenderDateList = ({
           flex-wrap 
         '
     >
-      <CalenderPreviousMonth
+      <CalendarPreviousMonth
         year={year}
         month={month}
       />
-      <CalenderThisMonth
+      <CalendarThisMonth
         year={year}
         month={month}
         date={date}
       />
-      <CalenderNextMonth
+      <CalendarNextMonth
         year={year}
         month={month}
       />

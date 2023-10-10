@@ -1,10 +1,10 @@
 import { WEEKDAY } from '../../../../const/const'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
-import { CalenderDateList } from '../CalenderDateList'
+import { CalendarDateList } from '../CalendarDateList'
 import { getColor } from '../utils/getColor'
 
-export const CalenderMain = ({
+export const CalendarMain = ({
   year,
   month,
   date,
@@ -28,7 +28,7 @@ export const CalenderMain = ({
           </div>
         ))}
       </div>
-      <CalenderDateList
+      <CalendarDateList
         year={year}
         month={month}
         date={date}

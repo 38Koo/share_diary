@@ -1,19 +1,19 @@
 import { Title } from '@storybook/blocks'
 import { Meta, StoryObj } from '@storybook/react'
-import { CalenderProfileSlider } from '.'
+import { CalendarProfileSlider } from '.'
 
 export default {
-  component: CalenderProfileSlider,
+  component: CalendarProfileSlider,
   tags: ['autodocs'],
   parameters: {
     docs: {
       pages: () => <Title>/</Title>,
     },
   },
-} as Meta<typeof CalenderProfileSlider>
+} as Meta<typeof CalendarProfileSlider>
 
 type Story = StoryObj<
-  typeof CalenderProfileSlider
+  typeof CalendarProfileSlider
 >
 
 export const Default: Story = {}

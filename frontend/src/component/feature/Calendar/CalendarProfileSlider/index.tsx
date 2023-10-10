@@ -3,13 +3,13 @@ import {
   IconProps,
 } from '../../../base/Icon'
 
-type CalenderProfileSliderProps = {
+type CalendarProfileSliderProps = {
   users?: IconProps[]
 }
 
-export const CalenderProfileSlider = ({
+export const CalendarProfileSlider = ({
   users,
-}: CalenderProfileSliderProps) => {
+}: CalendarProfileSliderProps) => {
   return (
     <div className='flex w-2/3 overflow-x-auto'>
       <div className=' flex-none pl-3 pr-1 pt-1'>
