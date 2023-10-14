@@ -20,15 +20,15 @@ export const Default: Story = {
     users: [
       {
         size: 'small',
-        unopend: true,
+        unopened: true,
       },
       {
         size: 'small',
-        unopend: false,
+        unopened: false,
       },
       {
         size: 'small',
-        unopend: false,
+        unopened: false,
       },
     ],
   },
