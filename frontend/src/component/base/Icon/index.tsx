@@ -2,13 +2,13 @@ import Image from 'next/image'
 
 export type IconProps = {
   imageUrl?: string
-  unopend?: boolean
+  unopened?: boolean
   size?: 'normal' | 'small'
 }
 
 export const Icon = ({
   imageUrl,
-  unopend = false,
+  unopened = false,
   size = 'normal',
 }: IconProps) => {
   return (
@@ -16,7 +16,7 @@ export const Icon = ({
       className={`
         relative inline-block
         ${
-          unopend
+          unopened
             ? `
               after:absolute 
               ${

@@ -7,7 +7,7 @@ import {
 } from '../../../../../types/types'
 import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
-import { onClickFromNotThisMonth } from '../helper/onClickFromNotThisMonth'
+import { onClickFromNotThisMonth } from '../helpers/onClickFromNotThisMonth'
 
 type CalendarNextMonthProps = Omit<
   DateWithoutDay,
@@ -28,13 +28,13 @@ export const CalendarNextMonth = ({
         : 0),
   )
 
-  const dayOfthisMonthLastDate =
+  const dayOfThisMonthLastDate =
     thisMonthLastDate.getDay()
 
   const dispatch = useDispatch()
 
   if (
-    dayOfthisMonthLastDate ===
+    dayOfThisMonthLastDate ===
     WEEKDAY_NAME.SATURDAY
   )
     return null
@@ -43,7 +43,7 @@ export const CalendarNextMonth = ({
     {
       length:
         WEEKDAY_NAME.SATURDAY -
-        dayOfthisMonthLastDate,
+        dayOfThisMonthLastDate,
     },
     (_, i) => i + 1,
   ).map((dateFromList) => (

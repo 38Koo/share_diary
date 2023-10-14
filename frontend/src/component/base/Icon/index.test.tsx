@@ -29,9 +29,9 @@ describe('Icon', () => {
   })
 
   describe('アイコン表示', () => {
-    it('unopend がtrueの場合、通知ブロックが表示されること', () => {})
+    it('unopened がtrueの場合、通知ブロックが表示されること', () => {})
 
-    it('unopend がfalseの場合は通知ブロックが表示されないこと', () => {
+    it('unopened がfalseの場合は通知ブロックが表示されないこと', () => {
       // TODO: it.eachでpropsを渡さない場合とfalseを明示的に渡した場合
     })
   })

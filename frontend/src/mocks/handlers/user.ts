@@ -6,7 +6,25 @@ export const user = rest.get(
     return res(
       ctx.status(200),
       ctx.json({
-        userName: '38koo',
+        data: [
+          [
+            {
+              userName: '38koo',
+            },
+            {
+              userName: 'testA',
+            },
+            {
+              userName: 'testB',
+            },
+            {
+              userName: 'testC',
+            },
+            {
+              userName: 'testD',
+            },
+          ],
+        ],
       }),
     )
   },

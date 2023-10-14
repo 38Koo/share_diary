@@ -21,7 +21,7 @@ export const CalendarUserIcons = ({
           >
             <Icon
               size='small'
-              unopend={user.unopend}
+              unopened={user.unopened}
             />
           </div>
         ))}

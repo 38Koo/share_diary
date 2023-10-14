@@ -6,7 +6,7 @@ import {
 } from '../../../../../types/types'
 import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
-import { onClickFromThisMonth } from '../helper/onClickFromThisMonth'
+import { onClickFromThisMonth } from '../helpers/onClickFromThisMonth'
 
 export const CalendarThisMonth = ({
   year,

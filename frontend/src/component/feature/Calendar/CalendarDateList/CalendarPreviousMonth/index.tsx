@@ -7,7 +7,7 @@ import {
 } from '../../../../../types/types'
 import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
-import { onClickFromNotThisMonth } from '../helper/onClickFromNotThisMonth'
+import { onClickFromNotThisMonth } from '../helpers/onClickFromNotThisMonth'
 
 type CalendarPreviousMonthProps = Omit<
   DateWithoutDay,
@@ -24,7 +24,7 @@ export const CalendarPreviousMonth = ({
     1,
   )
 
-  const dayOfthisMonthFirstDate =
+  const dayOfThisMonthFirstDate =
     thisMonthFirstDate.getDay()
 
   const dispatch = useDispatch()
@@ -48,19 +48,19 @@ export const CalendarPreviousMonth = ({
     return (
       index +
       monthLength -
-      dayOfthisMonthFirstDate +
+      dayOfThisMonthFirstDate +
       1
     )
   }
 
   if (
-    dayOfthisMonthFirstDate ===
+    dayOfThisMonthFirstDate ===
     WEEKDAY_NAME.SUNDAY
   )
     return <></>
 
   return Array.from(
-    { length: dayOfthisMonthFirstDate },
+    { length: dayOfThisMonthFirstDate },
     (_, i) => getDisplayDatesLength(i),
   ).map((dateFromList) => (
     <CalendarDate
