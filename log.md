@@ -34,6 +34,9 @@ $ npm install @reduxjs/toolkit redux react-redux
 // msw
 $ npm install msw --save-dev
 $ npx msw init public/ --save
+
+// React Query
+$ npm i @tanstack/react-query
 ```
 
 ### BackEnd

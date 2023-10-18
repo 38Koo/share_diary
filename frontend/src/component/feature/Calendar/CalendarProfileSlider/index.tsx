@@ -1,10 +1,8 @@
-import {
-  Icon,
-  IconProps,
-} from '../../../base/Icon'
+import { User } from '../../../../mocks/handlers/user'
+import { Icon } from '../../../base/Icon'
 
 type CalendarProfileSliderProps = {
-  users?: IconProps[]
+  users?: User[]
 }
 
 export const CalendarProfileSlider = ({
@@ -14,29 +12,16 @@ export const CalendarProfileSlider = ({
     <div className='flex w-2/3 overflow-x-auto'>
       <div className=' flex-none pl-3 pr-1 pt-1'>
         <div className='flex gap-4'>
-          {!!users && users.length > 0 && (
-            <Icon size='small' />
-          )}
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
-          <Icon size='small' />
+          {!!users &&
+            users.length > 0 &&
+            users.map((user) => {
+              return (
+                <Icon
+                  key={user.userName}
+                  size='small'
+                />
+              )
+            })}
         </div>
       </div>
     </div>
