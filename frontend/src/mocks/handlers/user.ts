@@ -1,5 +1,9 @@
 import { rest } from 'msw'
 
+export type User = {
+  userName: string
+}
+
 export const user = rest.get(
   '/user',
   (req, res, ctx) => {
