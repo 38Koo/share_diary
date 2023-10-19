@@ -19,6 +19,8 @@ export const CalendarText = () => {
     },
   })
 
+  if (isLoading) return null
+
   console.log(data.data)
 
   return (
