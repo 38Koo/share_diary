@@ -10,7 +10,6 @@ export const CalendarText = () => {
       return await fetch('/user')
         .then((res) => {
           if (!res.ok) throw new Error()
-
           return res.json()
         })
         .catch((e) => {
@@ -19,7 +18,9 @@ export const CalendarText = () => {
     },
   })
 
-  if (isLoading) return null
+  if (isLoading) {
+    return null
+  }
 
   console.log(data.data)
 
