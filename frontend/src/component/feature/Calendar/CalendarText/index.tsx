@@ -1,13 +1,25 @@
 import { useQuery } from '@tanstack/react-query'
+import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { UserProfile } from '../../../base/UserProfile'
 import { CalendarProfileSlider } from '../CalendarProfileSlider'
 
-export const CalendarText = () => {
+export const CalendarText = ({
+  year,
+  month,
+  date,
+}: DateWithoutDay) => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      return await fetch('/user')
+      const dateInfo: DateWithoutDay = {
+        year: year,
+        month: month,
+        date: date,
+      }
+      return await fetch(
+        `/api/v1/users?year=${year}?month=${month}&date=${date}`,
+      )
         .then((res) => {
           if (!res.ok) throw new Error()
           return res.json()
@@ -22,20 +34,16 @@ export const CalendarText = () => {
     return null
   }
 
-  console.log(data.data)
-
   return (
     <>
       <div className='h-60 border border-solid border-black'>
         <div className='flex h-14 items-baseline justify-between'>
-          <UserProfile userName='ユーザーネーム' />
-          {!!data && data.data.length > 0 && (
-            <CalendarProfileSlider
-              users={data.data[0]}
-            />
+          <UserProfile userName={data[0].name} />
+          {!!data && data.length > 0 && (
+            <CalendarProfileSlider users={data} />
           )}
         </div>
-        <Text>ここに文章が入ります。</Text>
+        <Text>{data[0].diary}</Text>
       </div>
     </>
   )
