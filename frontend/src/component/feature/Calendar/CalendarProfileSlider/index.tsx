@@ -1,4 +1,4 @@
-import { User } from '../../../../mocks/handlers/user'
+import { User } from '../../../../mocks/handlers/users'
 import { Icon } from '../../../base/Icon'
 
 type CalendarProfileSliderProps = {
@@ -17,7 +17,7 @@ export const CalendarProfileSlider = ({
             users.map((user) => {
               return (
                 <Icon
-                  key={user.userName}
+                  key={user.name}
                   size='small'
                 />
               )

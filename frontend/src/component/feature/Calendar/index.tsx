@@ -16,7 +16,11 @@ export const Calendar = () => {
         month={dateWithoutDay.month}
         date={dateWithoutDay.date}
       />
-      <CalendarText />
+      <CalendarText
+        year={dateWithoutDay.year}
+        month={dateWithoutDay.month}
+        date={dateWithoutDay.date}
+      />
       <CalendarMain
         year={dateWithoutDay.year}
         month={dateWithoutDay.month}
