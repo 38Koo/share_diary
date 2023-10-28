@@ -1,3 +1,3 @@
-import { users } from './users'
+import { todaysUsers } from './todaysUsers'
 
-export const handlers = [users]
+export const handlers = [todaysUsers]

@@ -12,13 +12,8 @@ export const CalendarText = ({
   const { isLoading, error, data } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const dateInfo: DateWithoutDay = {
-        year: year,
-        month: month,
-        date: date,
-      }
       return await fetch(
-        `/api/v1/users?year=${year}?month=${month}&date=${date}`,
+        `/api/v1/todaysUsers?year=${year}&month=${month}&date=${date}`,
       )
         .then((res) => {
           if (!res.ok) throw new Error()
@@ -37,13 +32,19 @@ export const CalendarText = ({
   return (
     <>
       <div className='h-60 border border-solid border-black'>
-        <div className='flex h-14 items-baseline justify-between'>
-          <UserProfile userName={data[0].name} />
-          {!!data && data.length > 0 && (
-            <CalendarProfileSlider users={data} />
-          )}
-        </div>
-        <Text>{data[0].diary}</Text>
+        {!!data.length && (
+          <>
+            <div className='flex h-14 items-baseline justify-between'>
+              <UserProfile
+                userName={data[0].name}
+              />
+              <CalendarProfileSlider
+                users={data}
+              />
+            </div>
+            <Text>{data[0].diary}</Text>
+          </>
+        )}
       </div>
     </>
   )
