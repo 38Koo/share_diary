@@ -1,8 +1,8 @@
-import { User } from '../../../../mocks/handlers/users'
+import { Users } from '../../../../redux/todaysDiaries/slice'
 import { Icon } from '../../../base/Icon'
 
 type CalendarProfileSliderProps = {
-  users?: User[]
+  users?: Users
 }
 
 export const CalendarProfileSlider = ({

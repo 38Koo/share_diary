@@ -1,16 +1,9 @@
-import { Icon } from '../component/base/Icon'
 import { Calendar } from '../component/feature/Calendar'
 
 export default function Home() {
   return (
-    <>
-      <h1 className='text-3xl font-bold underline'>
-        Hello world!
-      </h1>
-      <Icon />
-      <div className='flex justify-center'>
-        <Calendar />
-      </div>
-    </>
+    <div className='flex justify-center py-3'>
+      <Calendar />
+    </div>
   )
 }
