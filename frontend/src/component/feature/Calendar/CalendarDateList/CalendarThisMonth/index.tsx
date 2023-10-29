@@ -1,5 +1,8 @@
+import { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { DATE } from '../../../../../const/const'
+import { ShowIndexContext } from '../../../../../context/ShowIndexContext'
+import { UsersList } from '../../../../../redux/thisMonthUserInfo/slice'
 import {
   DateWithoutDay,
   MONTH_NAME,
@@ -8,12 +11,21 @@ import { CalendarDate } from '../../CalendarDate'
 import { isLeapYear } from '../../utils/isLeapYear'
 import { onClickFromThisMonth } from '../helpers/onClickFromThisMonth'
 
+type CalendarThisMonthProps = DateWithoutDay & {
+  usersList: UsersList
+}
+
 export const CalendarThisMonth = ({
   year,
   month,
   date,
-}: DateWithoutDay) => {
+  usersList,
+}: CalendarThisMonthProps) => {
   const dispatch = useDispatch()
+
+  const { setShowIndex } = useContext(
+    ShowIndexContext,
+  )
 
   const getMonthLength = () => {
     if (
@@ -39,10 +51,14 @@ export const CalendarThisMonth = ({
       date={dateFromList}
       selected={dateFromList === date}
       isThisMonth
+      users={usersList[dateFromList - 1]}
       onClick={() =>
         onClickFromThisMonth(
+          date,
           dateFromList,
+          usersList[dateFromList - 1],
           dispatch,
+          setShowIndex,
         )
       }
     />

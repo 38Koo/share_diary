@@ -1,14 +1,20 @@
 import { WEEKDAY } from '../../../../const/const'
+import { UsersList } from '../../../../redux/thisMonthUserInfo/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { CalendarDateList } from '../CalendarDateList'
 import { getColor } from '../utils/getColor'
 
+type CalendarMainProps = DateWithoutDay & {
+  usersList: UsersList
+}
+
 export const CalendarMain = ({
   year,
   month,
   date,
-}: DateWithoutDay) => {
+  usersList,
+}: CalendarMainProps) => {
   return (
     <>
       <div className='box-border flex w-[672px] border border-solid border-black'>
@@ -21,7 +27,6 @@ export const CalendarMain = ({
               text-center
             '
           >
-            {/* TODO: 土日の色分け */}
             <Text color={getColor(i, true)}>
               {day.name}
             </Text>
@@ -32,6 +37,7 @@ export const CalendarMain = ({
         year={year}
         month={month}
         date={date}
+        usersList={usersList}
       />
     </>
   )

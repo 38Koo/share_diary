@@ -7,6 +7,7 @@ import type { AppProps } from 'next/app'
 
 import { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
+import { ShowIndexProvider } from '../context/ShowIndexContext'
 import { store } from '../redux/store'
 
 export default function App({
@@ -42,7 +43,9 @@ export default function App({
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <ShowIndexProvider>
+          <Component {...pageProps} />
+        </ShowIndexProvider>
       </QueryClientProvider>
     </Provider>
   )
