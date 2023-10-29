@@ -1,3 +1,3 @@
-import { todaysUsers } from './todaysUsers'
+import { thisMonthUsers } from './thisMonthUsers'
 
-export const handlers = [todaysUsers]
+export const handlers = [thisMonthUsers]

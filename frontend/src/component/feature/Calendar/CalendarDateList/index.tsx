@@ -1,13 +1,19 @@
+import { UsersList } from '../../../../redux/thisMonthUserInfo/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { CalendarNextMonth } from './CalendarNextMonth'
 import { CalendarPreviousMonth } from './CalendarPreviousMonth'
 import { CalendarThisMonth } from './CalendarThisMonth'
 
+type CalendarDateListProps = DateWithoutDay & {
+  usersList: UsersList
+}
+
 export const CalendarDateList = ({
   year,
   month,
   date,
-}: DateWithoutDay) => {
+  usersList,
+}: CalendarDateListProps) => {
   return (
     <div
       className='
@@ -24,6 +30,7 @@ export const CalendarDateList = ({
         year={year}
         month={month}
         date={date}
+        usersList={usersList}
       />
       <CalendarNextMonth
         year={year}

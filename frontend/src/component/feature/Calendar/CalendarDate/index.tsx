@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import { Users } from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
-import { IconProps } from '../../../base/Icon'
 import { Text } from '../../../base/Text'
 import { getColor } from '../utils/getColor'
 import { CalendarUserIcons } from './CalendarUserIcons'
 
 type CalendarDateProps = DateWithoutDay & {
-  users?: IconProps[] // FIXME: 他の条件に変更
+  users?: Users
   onClick: () => void
   isThisMonth?: boolean
   selected?: boolean

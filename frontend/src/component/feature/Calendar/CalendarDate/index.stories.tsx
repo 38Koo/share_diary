@@ -19,15 +19,21 @@ export const Default: Story = {
     date: 12,
     users: [
       {
-        size: 'small',
+        id: 1,
+        name: 'test',
+        diary: 'test',
         unopened: true,
       },
       {
-        size: 'small',
+        id: 2,
+        name: 'test',
+        diary: 'test',
         unopened: false,
       },
       {
-        size: 'small',
+        id: 3,
+        name: 'test',
+        diary: 'test',
         unopened: false,
       },
     ],

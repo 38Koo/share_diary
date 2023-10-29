@@ -1,11 +1,9 @@
-import {
-  Icon,
-  IconProps,
-} from '../../../../base/Icon'
+import { Users } from '../../../../../redux/todaysDiaries/slice'
+import { Icon } from '../../../../base/Icon'
 import { Text } from '../../../../base/Text'
 
 type CalendarUserIconsProps = {
-  users?: IconProps[] // FIXME: 他の条件に変更
+  users?: Users
 }
 
 export const CalendarUserIcons = ({
@@ -16,7 +14,7 @@ export const CalendarUserIcons = ({
       <div className='pl-1'>
         {users?.slice(0, 2).map((user) => (
           <div
-            key={user.imageUrl}
+            key={user.id}
             className='inline-block pr-1'
           >
             <Icon

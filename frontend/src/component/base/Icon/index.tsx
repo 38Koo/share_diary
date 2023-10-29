@@ -1,15 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import Image from 'next/image'
 
 export type IconProps = {
   imageUrl?: string
   unopened?: boolean
   size?: 'normal' | 'small'
+  onClick?: () => (index: number) => void
 }
 
 export const Icon = ({
   imageUrl,
   unopened = false,
   size = 'normal',
+  onClick,
 }: IconProps) => {
   return (
     <div
@@ -31,6 +35,7 @@ export const Icon = ({
             : ''
         }
       `}
+      onClick={!!onClick ? onClick : undefined}
     >
       <Image
         src={imageUrl ?? '/next.svg'}
