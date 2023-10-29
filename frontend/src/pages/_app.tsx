@@ -29,7 +29,10 @@ export default function App({
       setShouldRender(true)
     }
 
-    if (process.env.NODE_ENV === 'development') {
+    if (
+      process.env.NEXT_PUBLIC_NODE_ENV ===
+      'development'
+    ) {
       startMockServer()
     }
   }, [])
