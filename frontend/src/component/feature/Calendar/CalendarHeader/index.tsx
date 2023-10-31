@@ -70,7 +70,7 @@ export const CalendarHeader = ({
       <div className='inline-block'>
         <select
           className='
-           rounded-lg bg-inherit text-xl
+           rounded-lg bg-inherit text-xl text-black
           '
           value={selectCount}
           onChange={(e) =>
