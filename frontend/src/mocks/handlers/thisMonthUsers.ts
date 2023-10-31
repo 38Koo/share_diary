@@ -1,7 +1,7 @@
 import { rest } from 'msw'
 import { isLeapYear } from '../../component/feature/Calendar/utils/isLeapYear'
 import { DATE } from '../../const/const'
-import { UsersList } from '../../redux/thisMonthUserInfo/slice'
+import { UsersList } from '../../redux/thisMonthDiaries/slice'
 import {
   DateWithoutDay,
   MONTH_NAME,

@@ -6,7 +6,12 @@ import {
   incrementMonth,
   updateYearByAmount,
 } from '../../../../redux/date/slice'
-import { DateWithoutDay } from '../../../../types/types'
+import { AppDispatch } from '../../../../redux/store'
+import { fetchUsersListAsyncByUserActions } from '../../../../redux/thisMonthDiaries/slice'
+import {
+  DateWithoutDay,
+  MONTH_NAME,
+} from '../../../../types/types'
 import { ChevronLeftButton } from '../../../base/Button/ChevronLeftButton'
 import { ChevronRightButton } from '../../../base/Button/ChevronRightButton'
 import { Text } from '../../../base/Text'
@@ -21,11 +26,23 @@ export const CalendarHeader = ({
     TODAY.year,
   )
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const onClickPrevious = () => {
     try {
       dispatch(decrementMonth())
+      dispatch(
+        fetchUsersListAsyncByUserActions({
+          year:
+            year === MONTH_NAME.JANUARY
+              ? year - 1
+              : year,
+          month:
+            month === MONTH_NAME.JANUARY
+              ? MONTH_NAME.NOVEMBER
+              : month - 1,
+        }),
+      )
     } catch (e) {
       console.error(e)
     }
@@ -33,7 +50,18 @@ export const CalendarHeader = ({
   const onClickNext = () => {
     try {
       dispatch(incrementMonth())
-      console.log(year)
+      dispatch(
+        fetchUsersListAsyncByUserActions({
+          year:
+            year === MONTH_NAME.DECEMBER
+              ? year + 1
+              : year,
+          month:
+            month === MONTH_NAME.DECEMBER
+              ? MONTH_NAME.JANUARY
+              : month + 1,
+        }),
+      )
     } catch (e) {
       console.error(e)
     }
@@ -42,6 +70,12 @@ export const CalendarHeader = ({
   const onChangeYear = (selectYear: number) => {
     try {
       dispatch(updateYearByAmount(selectYear))
+      dispatch(
+        fetchUsersListAsyncByUserActions({
+          year: selectYear,
+          month: month,
+        }),
+      )
 
       setSelectCount(selectYear)
     } catch (e) {
