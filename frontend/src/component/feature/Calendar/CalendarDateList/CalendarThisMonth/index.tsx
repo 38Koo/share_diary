@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { DATE } from '../../../../../const/const'
 import { ShowIndexContext } from '../../../../../context/ShowIndexContext'
-import { UsersList } from '../../../../../redux/thisMonthUserInfo/slice'
+import { UsersList } from '../../../../../redux/thisMonthDiaries/slice'
 import {
   DateWithoutDay,
   MONTH_NAME,

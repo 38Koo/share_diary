@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ShowIndexContext } from '../../../../context/ShowIndexContext'
-import { UsersList } from '../../../../redux/thisMonthUserInfo/slice'
+import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { UserProfile } from '../../../base/UserProfile'

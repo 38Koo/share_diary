@@ -1,5 +1,5 @@
 import { WEEKDAY } from '../../../../const/const'
-import { UsersList } from '../../../../redux/thisMonthUserInfo/slice'
+import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { CalendarDateList } from '../CalendarDateList'

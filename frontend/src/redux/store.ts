@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import dateReducer from './date/slice'
-import thisMonthDiaryReducer from './thisMonthUserInfo/slice'
+import thisMonthDiaryReducer from './thisMonthDiaries/slice'
 import todaysDiaryReducer from './todaysDiaries/slice'
 
 export const store = configureStore({

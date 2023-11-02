@@ -63,8 +63,14 @@ export const CalendarNextMonth = ({
       onClick={() =>
         onClickFromNotThisMonth(
           {
-            year: year,
-            month: month + 1,
+            year:
+              month === MONTH_NAME.DECEMBER
+                ? year + 1
+                : year,
+            month:
+              month === MONTH_NAME.DECEMBER
+                ? MONTH_NAME.JANUARY
+                : month + 1,
             date: dateFromList,
           },
           dispatch,

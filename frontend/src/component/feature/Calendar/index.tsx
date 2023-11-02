@@ -3,12 +3,13 @@ import {
   useDispatch,
   useSelector,
 } from 'react-redux'
+import { TODAY } from '../../../const/const'
 import { selectDate } from '../../../redux/date/slice'
 import { AppDispatch } from '../../../redux/store'
 import {
-  fetchUsersListAsync,
+  fetchFirstUsersListAsync,
   selectThisMonthDiaries,
-} from '../../../redux/thisMonthUserInfo/slice'
+} from '../../../redux/thisMonthDiaries/slice'
 import { DateWithoutDay } from '../../../types/types'
 import { CalendarHeader } from './CalendarHeader'
 import { CalendarMain } from './CalendarMain'
@@ -24,13 +25,14 @@ export const Calendar = () => {
   )
 
   useEffect(() => {
-    dispatch(fetchUsersListAsync())
-    console.log('fetchUsersListAsync')
+    dispatch(
+      fetchFirstUsersListAsync({
+        year: TODAY.year,
+        month: TODAY.month,
+      }),
+    )
+    console.log('fetchFirstUsersListAsync')
   }, [dispatch])
-
-  if (isLoading) {
-    return <div>loading...</div>
-  }
 
   return (
     <div className='w-[672px] border border-solid border-black'>
