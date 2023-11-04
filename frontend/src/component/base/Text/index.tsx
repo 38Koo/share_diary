@@ -9,6 +9,7 @@ export type TextProps = {
     | 'text-blue-300'
     | 'text-blue-500'
   verticalCenter?: boolean
+  fontWeight?: 'font-normal' | 'font-bold'
 }
 
 export const Text = ({
@@ -16,12 +17,14 @@ export const Text = ({
   size = 'text-base',
   color = 'text-black',
   verticalCenter = false,
+  fontWeight = 'font-normal',
 }: TextProps) => {
   return (
     <div
       className={`
         ${size} ${color}
         ${verticalCenter ? 'leading-loose' : ''}
+        ${fontWeight}
       `}
     >
       {children}
