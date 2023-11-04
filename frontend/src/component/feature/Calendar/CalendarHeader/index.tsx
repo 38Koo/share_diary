@@ -1,6 +1,11 @@
-import { useEffect, useState } from 'react'
+import {
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { useDispatch } from 'react-redux'
 import { TODAY } from '../../../../const/const'
+import { ShowIndexContext } from '../../../../context/ShowIndexContext'
 import {
   decrementMonth,
   incrementMonth,
@@ -25,6 +30,9 @@ export const CalendarHeader = ({
   const [selectCount, setSelectCount] = useState(
     TODAY.year,
   )
+  const { setShowIndex } = useContext(
+    ShowIndexContext,
+  )
 
   const dispatch = useDispatch<AppDispatch>()
 
@@ -43,6 +51,7 @@ export const CalendarHeader = ({
               : month - 1,
         }),
       )
+      setShowIndex(0)
     } catch (e) {
       console.error(e)
     }
@@ -62,6 +71,7 @@ export const CalendarHeader = ({
               : month + 1,
         }),
       )
+      setShowIndex(0)
     } catch (e) {
       console.error(e)
     }
@@ -78,6 +88,7 @@ export const CalendarHeader = ({
       )
 
       setSelectCount(selectYear)
+      setShowIndex(0)
     } catch (e) {
       console.error(e)
     }
