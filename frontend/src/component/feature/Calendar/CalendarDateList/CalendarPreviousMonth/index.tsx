@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { DATE } from '../../../../../const/const'
+import { ShowIndexContext } from '../../../../../context/ShowIndexContext'
 import {
   DateWithoutDay,
   MONTH_NAME,
@@ -18,6 +20,10 @@ export const CalendarPreviousMonth = ({
   year,
   month,
 }: CalendarPreviousMonthProps) => {
+  const { setShowIndex } = useContext(
+    ShowIndexContext,
+  )
+
   const thisMonthFirstDate = new Date(
     year,
     month,
@@ -90,6 +96,7 @@ export const CalendarPreviousMonth = ({
             date: dateFromList,
           },
           dispatch,
+          setShowIndex,
         )
       }
     />

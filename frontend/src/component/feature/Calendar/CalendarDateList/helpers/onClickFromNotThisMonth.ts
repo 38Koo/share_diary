@@ -18,6 +18,9 @@ export const onClickFromNotThisMonth = (
       undefined,
       AnyAction
     >,
+  setShowIndex: React.Dispatch<
+    React.SetStateAction<number>
+  >,
 ) => {
   try {
     dispatch(
@@ -33,6 +36,7 @@ export const onClickFromNotThisMonth = (
         month: dateInfo.month,
       }),
     )
+    setShowIndex(0)
   } catch (e) {
     console.error(e)
   }
