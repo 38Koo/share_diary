@@ -1,0 +1,10 @@
+version: "3"
+services:
+  db:
+    container_name: "share_diary"
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: share_diary
+    ports:
+      - "5432:5432"

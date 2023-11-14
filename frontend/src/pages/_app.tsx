@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 
+import { SessionProvider } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import { ShowIndexProvider } from '../context/ShowIndexContext'
@@ -12,7 +13,7 @@ import { store } from '../redux/store'
 
 export default function App({
   Component,
-  pageProps,
+  pageProps: { session, ...pageProps },
 }: AppProps) {
   const [shouldRender, setShouldRender] =
     useState(false)
@@ -44,12 +45,14 @@ export default function App({
   const queryClient = new QueryClient()
 
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <ShowIndexProvider>
-          <Component {...pageProps} />
-        </ShowIndexProvider>
-      </QueryClientProvider>
-    </Provider>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <ShowIndexProvider>
+            <Component {...pageProps} />
+          </ShowIndexProvider>
+        </QueryClientProvider>
+      </Provider>
+    </SessionProvider>
   )
 }
