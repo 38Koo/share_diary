@@ -1,3 +1,4 @@
+import { signIn } from 'next-auth/react'
 import { PrimaryButton } from '../../component/base/Button/PrimaryButton'
 import { Text } from '../../component/base/Text'
 
@@ -11,18 +12,12 @@ export default function AuthCheck() {
         >
           Authentication
         </Text>
-        <div className='flex h-48 w-96 flex-col items-center justify-center space-y-5 rounded-xl border border-red-600'>
+        <div className='flex h-48 w-96  items-center justify-center rounded-xl border border-red-600'>
           <PrimaryButton
-            onClick={() => {}}
+            onClick={() => signIn('google')}
             canHover
           >
-            Sign up
-          </PrimaryButton>
-          <PrimaryButton
-            onClick={() => {}}
-            canHover
-          >
-            Log in
+            Sign In With Google
           </PrimaryButton>
         </div>
       </div>
