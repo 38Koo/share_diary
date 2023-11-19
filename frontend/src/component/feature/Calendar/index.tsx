@@ -20,7 +20,7 @@ export const Calendar = () => {
   const dateWithoutDay: DateWithoutDay =
     useSelector(selectDate)
 
-  const { usersList, isLoading } = useSelector(
+  const { usersList } = useSelector(
     selectThisMonthDiaries,
   )
 

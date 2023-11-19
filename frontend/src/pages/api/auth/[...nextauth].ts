@@ -23,8 +23,8 @@ const authConfig = {
 
       const existingUser =
         await existingUserResponse.json()
-      console.log(existingUser)
 
+      // FIXME: ここでコンテキストにuser情報格納した方が良さそう
       if (existingUser) {
         return true
       } else {

@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
 import React, {
   useContext,
+  useRef,
   useState,
 } from 'react'
 import { ShowIndexContext } from '../../../../context/ShowIndexContext'
@@ -16,6 +17,8 @@ type CalendarTextProps = DateWithoutDay & {
 }
 
 export const CalendarText = ({
+  year,
+  month,
   date,
   usersList,
 }: CalendarTextProps) => {
@@ -24,6 +27,35 @@ export const CalendarText = ({
   )
 
   const { data } = useSession()
+
+  const ref = useRef<HTMLTextAreaElement>(null)
+
+  const registerDiary = async () => {
+    try {
+      if (ref.current == null) {
+        return
+      }
+
+      await fetch(
+        'http://localhost:4000/api/register/diary',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: 1,
+            year: year,
+            month: month,
+            day: date,
+            contents: ref.current.value,
+          }),
+        },
+      )
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   const [isEditMode, setIsEditMode] =
     useState(false)
@@ -64,11 +96,12 @@ export const CalendarText = ({
                       id='about'
                       name='about'
                       rows={3}
+                      ref={ref}
                       className='
                       block h-44 w-full rounded-md
                       border-0 bg-slate-300 py-1.5
                       text-gray-900 shadow-sm ring-1
-                    ring-inset ring-gray-300
+                      ring-inset ring-gray-300
                       placeholder:text-gray-400 focus:ring-2
                       focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
                     '
@@ -89,7 +122,9 @@ export const CalendarText = ({
                   <div className='absolute right-2 top-10'>
                     <PrimaryButton
                       isHalfSize
-                      onClick={() => {}}
+                      onClick={() =>
+                        registerDiary()
+                      }
                     >
                       保存する
                     </PrimaryButton>
