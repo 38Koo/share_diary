@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from ".";
 
 type TCreateUser = {
   name: string;
@@ -11,7 +9,7 @@ type TFindUser = {
   email: string;
 };
 
-export const createUser = async ({ name, email }: TCreateUser) => {
+export const registerUser = async ({ name, email }: TCreateUser) => {
   return await prisma.user.create({
     data: {
       name,

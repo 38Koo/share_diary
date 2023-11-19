@@ -15,6 +15,7 @@ model User {
   followers Follower[] @relation("UserFollowed")
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  Diaries   Diary[]
 }
 
 model Follower {
@@ -24,4 +25,16 @@ model Follower {
   followedBy   User     @relation("UserFollowed", fields: [followedById], references: [id])
   followedById Int
   createdAt    DateTime @default(now())
+}
+
+model Diary {
+  id       Int    @default(autoincrement())
+  year     Int
+  month    Int
+  day      Int
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id])
+  contents String
+
+  @@id([year, month, day, userId])
 }
