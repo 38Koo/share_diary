@@ -12,6 +12,7 @@ type UsersSliderProps = {
   setShowIndex: React.Dispatch<
     React.SetStateAction<number>
   >
+  showUserSlider: boolean
 }
 
 export const UsersSlider = ({
@@ -20,6 +21,7 @@ export const UsersSlider = ({
   usersList,
   showIndex,
   setShowIndex,
+  showUserSlider,
 }: UsersSliderProps) => {
   const { data } = useSession()
 
@@ -32,17 +34,20 @@ export const UsersSlider = ({
           }
         />
       ) : (
-        <>
-          <UserProfile
-            userName={
-              usersList[date - 1][showIndex].name
-            }
-          />
-          <CalendarProfileSlider
-            users={usersList[date - 1]}
-            setShowIndex={setShowIndex}
-          />
-        </>
+        showUserSlider && (
+          <>
+            <UserProfile
+              userName={
+                usersList[date - 1][showIndex]
+                  .name
+              }
+            />
+            <CalendarProfileSlider
+              users={usersList[date - 1]}
+              setShowIndex={setShowIndex}
+            />
+          </>
+        )
       )}
     </div>
   )
