@@ -38,27 +38,24 @@ export const CalendarText = ({
   return (
     <div className='relative h-60 border border-solid border-black'>
       <>
-        {hasFollowersDiaries ? (
-          <UsersSlider
-            date={date}
-            isEditMode={isEditMode}
-            usersList={usersList}
-            showIndex={showIndex}
-            setShowIndex={setShowIndex}
-          />
-        ) : (
-          <div className='h-1/5' />
-        )}
+        <UsersSlider
+          date={date}
+          isEditMode={isEditMode}
+          usersList={usersList}
+          showIndex={showIndex}
+          setShowIndex={setShowIndex}
+          showUserSlider={hasFollowersDiaries}
+        />
         <div className='relative flex h-4/5'>
           <div className='w-4/5 px-4'>
             {isEditMode ? (
               <InputDiary textAreaRef={ref} />
             ) : (
               <Text>
-                {
-                  usersList[date - 1][showIndex]
-                    .diary
-                }
+                {hasFollowersDiaries
+                  ? usersList[date - 1][showIndex]
+                      .diary
+                  : ''}
               </Text>
             )}
           </div>
