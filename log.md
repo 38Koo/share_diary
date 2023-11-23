@@ -50,4 +50,6 @@ $ npm install typescript --save-dev
 $ npm i --save-dev @types/node
 // 下記を参考に構築
 // https://reffect.co.jp/node-js/express-typescript/
+
+$ npx prisma migrate dev --name migration名
 ```
