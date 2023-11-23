@@ -1,7 +1,12 @@
 import express from "express";
-import { findUserByEmail, registerUser } from "./prisma/client/user";
+import {
+  findUserByAccountId,
+  findUserByEmail,
+  registerUser,
+} from "./prisma/client/user";
 import { registerDiary } from "./prisma/client/diary";
 import cors from "cors";
+import { ApplyForFollow } from "./prisma/client/follower";
 
 const app = express();
 
@@ -36,12 +41,40 @@ app.get("/api/check/users", async (req, res) => {
   res.status(200).json(user);
 });
 
+app.get("/api/find/user", async (req, res) => {
+  const { accountId } = req.query;
+
+  if (typeof accountId !== "string") {
+    res.status(400).json({ message: "Invalid accountId parameter" });
+    return;
+  }
+
+  const user = await findUserByAccountId({ accountId });
+  res.status(200).json(user);
+});
+
 app.post("/api/register/diary", async (req, res) => {
   const { year, month, day, userId, contents } = req.body;
 
   try {
     const diary = await registerDiary({ year, month, day, userId, contents });
     res.status(200).json(diary);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.post("/api/apply/follow", async (req, res) => {
+  const { userId, followedById } = req.body;
+
+  try {
+    const applyFollow = await ApplyForFollow({ userId, followedById });
+    if (applyFollow === null) {
+      res.status(200).json({ message: "already requested a follow" });
+    }
+
+    res.status(200).json(applyFollow);
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Internal Server Error" });
