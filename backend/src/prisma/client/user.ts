@@ -29,11 +29,18 @@ export const registerUser = async ({ name, email }: TCreateUser) => {
 };
 
 export const findUserByEmail = async ({ email }: Partial<TFindUser>) => {
-  return await prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       email,
     },
   });
+
+  return {
+    id: user?.id,
+    name: user?.name,
+    email: user?.email,
+    accountId: user?.accountId,
+  };
 };
 
 export const findUserByAccountId = async ({

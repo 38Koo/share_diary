@@ -18,7 +18,7 @@ const authConfig = {
       console.log(user.user.email)
 
       const existingUserResponse = await fetch(
-        `http://localhost:4000/api/check/users?email=${user.user.email}`,
+        `http://localhost:4000/api/check/user?email=${user.user.email}`,
       )
 
       const existingUser =
