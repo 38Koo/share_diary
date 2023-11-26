@@ -34,7 +34,7 @@ export default function MyPage() {
             icon={faUserFriends}
             className='h-8'
             onClick={() =>
-              router.push('/find-friends/')
+              router.push('/friends/')
             }
           />
         </div>

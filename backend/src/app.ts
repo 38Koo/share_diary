@@ -29,7 +29,7 @@ app.post("/api/register/users", async (req, res) => {
   }
 });
 
-app.get("/api/check/users", async (req, res) => {
+app.get("/api/check/user", async (req, res) => {
   const { email } = req.query;
 
   if (typeof email !== "string") {

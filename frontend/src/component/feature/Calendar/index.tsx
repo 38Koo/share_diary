@@ -31,7 +31,6 @@ export const Calendar = () => {
         month: TODAY.month,
       }),
     )
-    console.log('fetchFirstUsersListAsync')
   }, [dispatch])
 
   return (
