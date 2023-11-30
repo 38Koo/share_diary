@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { AuthUserContext } from '../../../../context/AuthUserContext'
 import { DateWithoutDay } from '../../../../types/types'
 import { PrimaryButton } from '../../../base/Button/PrimaryButton'
 
@@ -11,6 +13,10 @@ export const SubmitButton = ({
   date,
   textAreaRef,
 }: SubmitButtonProps) => {
+  const user = useContext(AuthUserContext)
+
+  console.log(user)
+
   const registerDiary = async () => {
     try {
       if (textAreaRef.current == null) {
@@ -25,7 +31,7 @@ export const SubmitButton = ({
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: 1,
+            userId: user?.id,
             year: year,
             month: month,
             day: date,
