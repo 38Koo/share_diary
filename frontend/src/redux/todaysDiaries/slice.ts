@@ -4,7 +4,7 @@ import { todaysDiariesReducer } from './reducers/todaysDiariesReducer'
 export type User = {
   id: number
   name: string
-  diary: string
+  contents: string
   unopened: boolean
 }
 

@@ -3,10 +3,15 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRef, useState } from 'react'
+import {
+  useContext,
+  useRef,
+  useState,
+} from 'react'
 import { PrimaryButton } from '../../component/base/Button/PrimaryButton'
 import { Text } from '../../component/base/Text'
 import { CommonPageLayout } from '../../component/feature/CommonPageLayout'
+import { AuthUserContext } from '../../context/AuthUserContext'
 
 export type FriendData = {
   id: number
@@ -22,6 +27,8 @@ export default function FindFriends() {
     useState<FriendData | null>(null)
 
   const ref = useRef<HTMLInputElement>(null)
+
+  const user = useContext(AuthUserContext)
 
   const searchFriendByID = async () => {
     try {
@@ -50,8 +57,8 @@ export default function FindFriends() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: 2,
-            followedById: friendData?.id,
+            userId: user?.id,
+            followId: friendData?.id,
           }),
         },
       )

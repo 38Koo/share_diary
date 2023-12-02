@@ -2,19 +2,19 @@ import { prisma } from ".";
 
 type TApplyForFollow = {
   userId: number;
-  followedById: number;
+  followId: number;
 };
 
-export const ApplyForFollow = async ({
-  userId,
-  followedById,
-}: TApplyForFollow) => {
+export const ApplyForFollow = async ({ userId, followId }: TApplyForFollow) => {
   const existCheck = await prisma.follower.findUnique({
     where: {
       userId_followedById: {
-        userId,
-        followedById,
+        userId: followId,
+        followedById: userId,
       },
+    },
+    select: {
+      followedById: true,
     },
   });
 
@@ -24,8 +24,8 @@ export const ApplyForFollow = async ({
 
   return await prisma.follower.create({
     data: {
-      userId: userId,
-      followedById: followedById,
+      userId: followId,
+      followedById: userId,
       status: "PENDING",
     },
   });

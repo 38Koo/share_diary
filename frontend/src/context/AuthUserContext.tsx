@@ -35,8 +35,6 @@ export const AuthUserProvider = ({
       const authUser =
         (await authUserResponse.json()) as User
 
-      console.log(authUser, 1)
-
       setUser(authUser)
     }
 
