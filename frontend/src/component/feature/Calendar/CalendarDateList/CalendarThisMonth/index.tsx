@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { DATE } from '../../../../../const/const'
+import { AuthUserContext } from '../../../../../context/AuthUserContext'
 import { ShowIndexContext } from '../../../../../context/ShowIndexContext'
 import { UsersList } from '../../../../../redux/thisMonthDiaries/slice'
 import {
@@ -26,6 +27,8 @@ export const CalendarThisMonth = ({
   const { setShowIndex } = useContext(
     ShowIndexContext,
   )
+
+  const user = useContext(AuthUserContext)
 
   const getMonthLength = () => {
     if (
@@ -54,9 +57,11 @@ export const CalendarThisMonth = ({
       users={usersList[dateFromList - 1]}
       onClick={() =>
         onClickFromThisMonth(
+          year,
+          month,
           date,
           dateFromList,
-          usersList[dateFromList - 1],
+          user?.id,
           dispatch,
           setShowIndex,
         )

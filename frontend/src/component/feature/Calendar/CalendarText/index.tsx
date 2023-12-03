@@ -3,8 +3,13 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { User } from '../../../../context/AuthUserContext'
 import { ShowIndexContext } from '../../../../context/ShowIndexContext'
-import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
+import {
+  Diaries,
+  Diary,
+  UsersWithDiaries,
+} from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { ChangeModeButton } from './ChangeModeButton'
@@ -13,14 +18,14 @@ import { SubmitButton } from './SubmitButton'
 import { UsersSlider } from './UsersSlider'
 
 type CalendarTextProps = DateWithoutDay & {
-  usersList: UsersList
+  diariesByDay: UsersWithDiaries
 }
 
 export const CalendarText = ({
   year,
   month,
   date,
-  usersList,
+  diariesByDay,
 }: CalendarTextProps) => {
   const { showIndex, setShowIndex } = useContext(
     ShowIndexContext,
@@ -31,9 +36,8 @@ export const CalendarText = ({
   const [isEditMode, setIsEditMode] =
     useState(false)
 
-  const hasFollowersDiaries =
-    !!usersList[date - 1] &&
-    usersList[date - 1].length > 0
+  const hasDiaries =
+    !!diariesByDay && diariesByDay.length > 0
 
   return (
     <div className='relative h-60 border border-solid border-black'>
@@ -41,10 +45,10 @@ export const CalendarText = ({
         <UsersSlider
           date={date}
           isEditMode={isEditMode}
-          usersList={usersList}
+          diariesByDay={diariesByDay}
           showIndex={showIndex}
           setShowIndex={setShowIndex}
-          showUserSlider={hasFollowersDiaries}
+          showUserSlider={hasDiaries}
         />
         <div className='relative flex h-4/5'>
           <div className='w-4/5 px-4'>
@@ -52,9 +56,9 @@ export const CalendarText = ({
               <InputDiary textAreaRef={ref} />
             ) : (
               <Text>
-                {hasFollowersDiaries
-                  ? usersList[date - 1][showIndex]
-                      .diary
+                {hasDiaries
+                  ? diariesByDay[showIndex]
+                      .contents
                   : ''}
               </Text>
             )}

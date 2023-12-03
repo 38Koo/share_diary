@@ -1,15 +1,20 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import {
   useDispatch,
   useSelector,
 } from 'react-redux'
 import { TODAY } from '../../../const/const'
+import { AuthUserContext } from '../../../context/AuthUserContext'
 import { selectDate } from '../../../redux/date/slice'
 import { AppDispatch } from '../../../redux/store'
 import {
-  fetchFirstUsersListAsync,
+  fetchUsersListAsyncByLanding,
   selectThisMonthDiaries,
 } from '../../../redux/thisMonthDiaries/slice'
+import {
+  fetchDiariesAsyncByLanding,
+  selectTodaysDiaries,
+} from '../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../types/types'
 import { CalendarHeader } from './CalendarHeader'
 import { CalendarMain } from './CalendarMain'
@@ -23,15 +28,34 @@ export const Calendar = () => {
   const { usersList } = useSelector(
     selectThisMonthDiaries,
   )
+  const { diariesByDay } = useSelector(
+    selectTodaysDiaries,
+  )
+
+  const user = useContext(AuthUserContext)
 
   useEffect(() => {
+    if (user == null) return
+
     dispatch(
-      fetchFirstUsersListAsync({
+      fetchUsersListAsyncByLanding({
+        userId: user?.id,
         year: TODAY.year,
         month: TODAY.month,
       }),
     )
-  }, [dispatch])
+
+    dispatch(
+      fetchDiariesAsyncByLanding({
+        userId: user?.id,
+        year: TODAY.year,
+        month: TODAY.month,
+        date: TODAY.date,
+      }),
+    )
+  }, [user, dispatch])
+
+  if (!usersList) return null
 
   return (
     <div className='w-[672px] border border-solid border-black'>
@@ -44,7 +68,7 @@ export const Calendar = () => {
         year={dateWithoutDay.year}
         month={dateWithoutDay.month}
         date={dateWithoutDay.date}
-        usersList={usersList}
+        diariesByDay={diariesByDay}
       />
       <CalendarMain
         year={dateWithoutDay.year}

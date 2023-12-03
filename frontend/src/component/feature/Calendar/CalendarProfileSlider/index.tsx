@@ -1,9 +1,13 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Users } from '../../../../redux/todaysDiaries/slice'
+import { User } from '../../../../context/AuthUserContext'
+import {
+  Diary,
+  UsersWithDiaries,
+} from '../../../../redux/todaysDiaries/slice'
 import { Icon } from '../../../base/Icon'
 
 type CalendarProfileSliderProps = {
-  users?: Users
+  users?: UsersWithDiaries
   setShowIndex: Dispatch<SetStateAction<number>>
 }
 

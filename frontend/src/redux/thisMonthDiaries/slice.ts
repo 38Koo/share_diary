@@ -12,23 +12,32 @@ export type UsersListInitialState = {
   isLoading: boolean
 }
 
+type UserId = number | undefined
+
 export const initialState: UsersListInitialState =
   {
     usersList: [],
     isLoading: false,
   }
 
-export const fetchFirstUsersListAsync =
+export const fetchUsersListAsyncByLanding =
   createAsyncThunk(
-    'usersList/fetchFirstUsersListAsync',
+    'usersList/fetchUsersListAsyncByLanding',
     async ({
+      userId,
       year,
       month,
-    }: Pick<FullDate, 'year' | 'month'>) => {
+    }: { userId: UserId } & Pick<
+      FullDate,
+      'year' | 'month'
+    >) => {
+      if (userId === undefined) return
+
       const response = await fetch(
-        `/api/v1/thisMonthUsers?year=${year}&month=${month}`,
+        `http://localhost:4000/api/find/postedUsers?userId=${userId}&year=${year}&month=${month}`,
       )
       const data = await response.json()
+
       return data
     },
   )
@@ -54,20 +63,20 @@ const thisMonthDiariesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
-      fetchFirstUsersListAsync.pending,
+      fetchUsersListAsyncByLanding.pending,
       (state) => {
         state.isLoading = true
       },
     )
     builder.addCase(
-      fetchFirstUsersListAsync.fulfilled,
+      fetchUsersListAsyncByLanding.fulfilled,
       (state, action) => {
         state.isLoading = false
         state.usersList = action.payload
       },
     )
     builder.addCase(
-      fetchFirstUsersListAsync.rejected,
+      fetchUsersListAsyncByLanding.rejected,
       (state) => {
         state.isLoading = false
       },

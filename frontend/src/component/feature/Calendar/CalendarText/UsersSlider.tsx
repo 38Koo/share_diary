@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react'
-import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
+import { UsersWithDiaries } from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { UserProfile } from '../../../base/UserProfile'
 import { CalendarProfileSlider } from '../CalendarProfileSlider'
@@ -7,7 +7,7 @@ import { CalendarProfileSlider } from '../CalendarProfileSlider'
 type UsersSliderProps = {
   date: DateWithoutDay['date']
   isEditMode: boolean
-  usersList: UsersList
+  diariesByDay: UsersWithDiaries
   showIndex: number
   setShowIndex: React.Dispatch<
     React.SetStateAction<number>
@@ -18,7 +18,7 @@ type UsersSliderProps = {
 export const UsersSlider = ({
   date,
   isEditMode,
-  usersList,
+  diariesByDay,
   showIndex,
   setShowIndex,
   showUserSlider,
@@ -38,12 +38,11 @@ export const UsersSlider = ({
           <>
             <UserProfile
               userName={
-                usersList[date - 1][showIndex]
-                  .name
+                diariesByDay[showIndex].user.name
               }
             />
             <CalendarProfileSlider
-              users={usersList[date - 1]}
+              users={diariesByDay}
               setShowIndex={setShowIndex}
             />
           </>

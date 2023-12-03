@@ -17,10 +17,7 @@ export const CalendarUserIcons = ({
             key={user.id}
             className='inline-block pr-1'
           >
-            <Icon
-              size='small'
-              unopened={user.unopened}
-            />
+            <Icon size='small' />
           </div>
         ))}
         {users && users.length > 2 && (
