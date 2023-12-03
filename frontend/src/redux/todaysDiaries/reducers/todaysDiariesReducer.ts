@@ -1,7 +1,15 @@
-import { Users } from '../slice'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import {
+  DiariesInitialState,
+  UsersWithDiaries,
+} from '../slice'
 
 export const todaysDiariesReducer = (
-  state: Users,
+  state: DiariesInitialState,
+  action: PayloadAction<UsersWithDiaries>,
 ) => {
-  return state
+  return {
+    ...state,
+    diariesByDay: action.payload,
+  }
 }

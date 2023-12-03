@@ -75,7 +75,6 @@ app.post("/api/apply/follow", async (req, res) => {
 
 app.get("/api/find/postedUsers", async (req, res) => {
   const { userId, year, month } = req.query;
-  console.log(userId, year, month);
 
   try {
     if (

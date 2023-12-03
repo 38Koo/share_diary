@@ -15,8 +15,6 @@ export const SubmitButton = ({
 }: SubmitButtonProps) => {
   const user = useContext(AuthUserContext)
 
-  console.log(user)
-
   const registerDiary = async () => {
     try {
       if (textAreaRef.current == null) {

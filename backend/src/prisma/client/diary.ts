@@ -39,6 +39,9 @@ export const diariesListByDay = async ({
         ],
       },
     },
+    include: {
+      user: true,
+    },
   });
 };
 

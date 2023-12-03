@@ -9,7 +9,6 @@ export type UsersList = Users[]
 
 export type UsersListInitialState = {
   usersList: UsersList
-  diariesByDay: UsersList
   isLoading: boolean
 }
 
@@ -18,7 +17,6 @@ type UserId = number | undefined
 export const initialState: UsersListInitialState =
   {
     usersList: [],
-    diariesByDay: [],
     isLoading: false,
   }
 
@@ -37,29 +35,6 @@ export const fetchUsersListAsyncByLanding =
 
       const response = await fetch(
         `http://localhost:4000/api/find/postedUsers?userId=${userId}&year=${year}&month=${month}`,
-      )
-      const data = await response.json()
-
-      return data
-    },
-  )
-
-export const fetchDiariesAsyncByLanding =
-  createAsyncThunk(
-    'usersList/fetchDiariesAsyncByLanding',
-    async ({
-      userId,
-      year,
-      month,
-      date,
-    }: { userId: UserId } & Omit<
-      FullDate,
-      'day'
-    >) => {
-      if (userId === undefined) return
-
-      const response = await fetch(
-        `http://localhost:4000/api/find/diaries?userId=${userId}&year=${year}&month=${month}&day=${date}`,
       )
       const data = await response.json()
 
@@ -107,30 +82,11 @@ const thisMonthDiariesSlice = createSlice({
       },
     )
     builder.addCase(
-      fetchDiariesAsyncByLanding.pending,
+      fetchUsersListAsyncByUserActions.pending,
       (state) => {
         state.isLoading = true
       },
     )
-    builder.addCase(
-      fetchDiariesAsyncByLanding.fulfilled,
-      (state, action) => {
-        state.isLoading = false
-        state.diariesByDay = action.payload
-      },
-    )
-    builder.addCase(
-      fetchDiariesAsyncByLanding.rejected,
-      (state) => {
-        state.isLoading = false
-      },
-    ),
-      builder.addCase(
-        fetchUsersListAsyncByUserActions.pending,
-        (state) => {
-          state.isLoading = true
-        },
-      )
     builder.addCase(
       fetchUsersListAsyncByUserActions.fulfilled,
       (state, action) => {

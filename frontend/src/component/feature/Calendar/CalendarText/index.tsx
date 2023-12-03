@@ -3,9 +3,13 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { User } from '../../../../context/AuthUserContext'
 import { ShowIndexContext } from '../../../../context/ShowIndexContext'
-import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
-import { Users } from '../../../../redux/todaysDiaries/slice'
+import {
+  Diaries,
+  Diary,
+  UsersWithDiaries,
+} from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { ChangeModeButton } from './ChangeModeButton'
@@ -14,7 +18,7 @@ import { SubmitButton } from './SubmitButton'
 import { UsersSlider } from './UsersSlider'
 
 type CalendarTextProps = DateWithoutDay & {
-  diariesByDay: Users
+  diariesByDay: UsersWithDiaries
 }
 
 export const CalendarText = ({
@@ -32,9 +36,8 @@ export const CalendarText = ({
   const [isEditMode, setIsEditMode] =
     useState(false)
 
-  const hasDiaries = diariesByDay.length > 0
-
-  console.log(diariesByDay)
+  const hasDiaries =
+    !!diariesByDay && diariesByDay.length > 0
 
   return (
     <div className='relative h-60 border border-solid border-black'>

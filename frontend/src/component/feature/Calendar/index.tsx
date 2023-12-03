@@ -8,10 +8,13 @@ import { AuthUserContext } from '../../../context/AuthUserContext'
 import { selectDate } from '../../../redux/date/slice'
 import { AppDispatch } from '../../../redux/store'
 import {
-  fetchDiariesAsyncByLanding,
   fetchUsersListAsyncByLanding,
   selectThisMonthDiaries,
 } from '../../../redux/thisMonthDiaries/slice'
+import {
+  fetchDiariesAsyncByLanding,
+  selectTodaysDiaries,
+} from '../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../types/types'
 import { CalendarHeader } from './CalendarHeader'
 import { CalendarMain } from './CalendarMain'
@@ -22,8 +25,11 @@ export const Calendar = () => {
   const dateWithoutDay: DateWithoutDay =
     useSelector(selectDate)
 
-  const { usersList, diariesByDay } = useSelector(
+  const { usersList } = useSelector(
     selectThisMonthDiaries,
+  )
+  const { diariesByDay } = useSelector(
+    selectTodaysDiaries,
   )
 
   const user = useContext(AuthUserContext)

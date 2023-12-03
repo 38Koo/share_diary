@@ -15,8 +15,6 @@ const authConfig = {
   secret: process.env.AUTH_SECRET,
   callbacks: {
     async signIn(user) {
-      console.log(user.user.email)
-
       const existingUserResponse = await fetch(
         `http://localhost:4000/api/check/user?email=${user.user.email}`,
       )
