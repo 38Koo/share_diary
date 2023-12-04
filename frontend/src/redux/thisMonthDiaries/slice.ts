@@ -1,7 +1,9 @@
+import { format } from 'path'
 import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
+import { formatDate } from '../../component/helper/date'
 import { FullDate } from '../../types/types'
 import { Users } from '../todaysDiaries/slice'
 
@@ -27,16 +29,22 @@ export const fetchUsersListAsyncByLanding =
       userId,
       year,
       month,
-    }: { userId: UserId } & Pick<
+      date,
+    }: { userId: UserId } & Omit<
       FullDate,
-      'year' | 'month'
+      'day'
     >) => {
       if (userId === undefined) return
 
       const response = await fetch(
-        `http://localhost:4000/api/find/postedUsers?userId=${userId}&year=${year}&month=${month}`,
+        `http://localhost:4000/api/find/postedUsers?userId=${userId}&date=${formatDate(
+          year,
+          month,
+          date,
+        )}`,
       )
       const data = await response.json()
+      console.log(data)
 
       return data
     },
