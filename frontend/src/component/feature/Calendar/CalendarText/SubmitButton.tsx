@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { AuthUserContext } from '../../../../context/AuthUserContext'
 import { DateWithoutDay } from '../../../../types/types'
 import { PrimaryButton } from '../../../base/Button/PrimaryButton'
-import { formatDate } from '../../../helper/date'
+import { formatDateForBE } from '../../../helper/date'
 
 type SubmitButtonProps = DateWithoutDay & {
   textAreaRef: React.RefObject<HTMLTextAreaElement>
@@ -31,7 +31,11 @@ export const SubmitButton = ({
           },
           body: JSON.stringify({
             userId: user?.id,
-            date: formatDate(year, month, date),
+            date: formatDateForBE(
+              year,
+              month,
+              date,
+            ),
             contents: textAreaRef.current.value,
           }),
         },

@@ -1,12 +1,12 @@
 import { WEEKDAY } from '../../../../const/const'
-import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
+import { PostedUsers } from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { CalendarDateList } from '../CalendarDateList'
 import { getColor } from '../utils/getColor'
 
 type CalendarMainProps = DateWithoutDay & {
-  usersList: UsersList
+  usersList: PostedUsers
 }
 
 export const CalendarMain = ({

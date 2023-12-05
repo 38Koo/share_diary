@@ -57,6 +57,9 @@ export const findPostedUsersByMonth = async ({
         ],
       },
     },
+    orderBy: {
+      date: "asc",
+    },
   });
 
   return postedDate;

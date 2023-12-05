@@ -1,16 +1,16 @@
-import { format } from 'path'
 import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
-import { formatDate } from '../../component/helper/date'
+import {
+  DiariesForCalender,
+  formatDateForBE,
+  formatDateForFE,
+} from '../../component/helper/date'
 import { FullDate } from '../../types/types'
-import { Users } from '../todaysDiaries/slice'
-
-export type UsersList = Users[]
 
 export type UsersListInitialState = {
-  usersList: UsersList
+  usersList: DiariesForCalender
   isLoading: boolean
 }
 
@@ -18,7 +18,7 @@ type UserId = number | undefined
 
 export const initialState: UsersListInitialState =
   {
-    usersList: [],
+    usersList: {},
     isLoading: false,
   }
 
@@ -37,16 +37,18 @@ export const fetchUsersListAsyncByLanding =
       if (userId === undefined) return
 
       const response = await fetch(
-        `http://localhost:4000/api/find/postedUsers?userId=${userId}&date=${formatDate(
+        `http://localhost:4000/api/find/postedUsers?userId=${userId}&date=${formatDateForBE(
           year,
           month,
           date,
         )}`,
       )
       const data = await response.json()
-      console.log(data)
 
-      return data
+      const formattedDiaries =
+        formatDateForFE(data)
+
+      return formattedDiaries
     },
   )
 
@@ -80,7 +82,9 @@ const thisMonthDiariesSlice = createSlice({
       fetchUsersListAsyncByLanding.fulfilled,
       (state, action) => {
         state.isLoading = false
-        state.usersList = action.payload
+        if (action.payload) {
+          state.usersList = action.payload
+        }
       },
     )
     builder.addCase(

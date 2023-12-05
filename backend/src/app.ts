@@ -66,8 +66,9 @@ app.post("/api/apply/follow", async (req, res) => {
 
   try {
     const applyFollow = await ApplyForFollow({ userId, followId });
-    if (applyFollow !== null) {
-      res.status(500).json({ message: "already requested a follow" });
+    if (!applyFollow || applyFollow.id !== undefined) {
+      res.status(200).json({ message: "already requested a follow" });
+      return;
     }
 
     res.status(200).json(applyFollow);

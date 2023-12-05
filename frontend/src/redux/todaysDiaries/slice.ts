@@ -1,4 +1,3 @@
-import { type } from 'os'
 import {
   createAsyncThunk,
   createSlice,
@@ -9,16 +8,14 @@ import { todaysDiariesReducer } from './reducers/todaysDiariesReducer'
 export type Diary = {
   id: number
   name: string
-  year: number
-  month: number
-  day: number
+  date: string
   contents: string
   userId: number
   unopened: boolean
 }
 
 // FIXME: 宣言場所変更
-export type User = {
+export type PostedUser = {
   id: number
   name: string
   email: string
@@ -27,12 +24,14 @@ export type User = {
   accountId: string
 }
 
-export type UserWithDiary = Diary & { user: User }
+export type UserWithDiary = Diary & {
+  user: PostedUser
+}
 export type UsersWithDiaries = UserWithDiary[]
 
 export type Diaries = Diary[]
 
-export type Users = User[]
+export type PostedUsers = PostedUser[]
 
 export type DiariesInitialState = {
   diariesByDay: UsersWithDiaries

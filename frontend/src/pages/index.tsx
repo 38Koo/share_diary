@@ -7,11 +7,13 @@ export default function Home() {
   const user = useContext(AuthUserContext)
 
   return (
-    <>
+    <div className='h-screen bg-[#FCF5E8]'>
       <Header />
-      <div className='flex justify-center bg-[#FCF5E8] py-3'>
-        {user && <Calendar />}
-      </div>
-    </>
+      {!!user && (
+        <div className='flex justify-center bg-[#FCF5E8] py-3'>
+          {<Calendar />}
+        </div>
+      )}
+    </div>
   )
 }
