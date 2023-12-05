@@ -1,11 +1,11 @@
-import { UsersList } from '../../../../redux/thisMonthDiaries/slice'
+import { PostedUsers } from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { CalendarNextMonth } from './CalendarNextMonth'
 import { CalendarPreviousMonth } from './CalendarPreviousMonth'
 import { CalendarThisMonth } from './CalendarThisMonth'
 
 type CalendarDateListProps = DateWithoutDay & {
-  usersList: UsersList
+  usersList: PostedUsers
 }
 
 export const CalendarDateList = ({

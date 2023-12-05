@@ -1,30 +1,19 @@
 import { prisma } from ".";
 type TFindDiaries = {
   userId: number;
-  year: number;
-  month: number;
-  day: number;
+  date: string;
 };
 
 type TRegisterDiary = {
   userId: number;
-  year: number;
-  month: number;
-  day: number;
+  date: string;
   contents: string;
 };
 
-export const diariesListByDay = async ({
-  userId,
-  year,
-  month,
-  day,
-}: TFindDiaries) => {
+export const diariesListByDay = async ({ userId, date }: TFindDiaries) => {
   return await prisma.diary.findMany({
     where: {
-      year: year,
-      month: month,
-      day: day,
+      date: date,
       user: {
         OR: [
           { id: userId },
@@ -47,14 +36,13 @@ export const diariesListByDay = async ({
 
 export const findPostedUsersByMonth = async ({
   userId,
-  year,
-  month,
+  date,
 }: Omit<TFindDiaries, "day">) => {
-  const postedDate = await prisma.diary.groupBy({
-    by: ["day"],
+  const postedDate = await prisma.diary.findMany({
     where: {
-      year: year,
-      month: month,
+      date: {
+        startsWith: date.substring(0, 6),
+      },
       user: {
         OR: [
           { id: userId },
@@ -69,15 +57,19 @@ export const findPostedUsersByMonth = async ({
         ],
       },
     },
+    orderBy: {
+      date: "asc",
+    },
   });
 
+  return postedDate;
+
+  //FIXME:
   return await Promise.all(
     postedDate.map(async (day) => {
       return await prisma.diary.findMany({
         where: {
-          day: day.day,
-          year: year,
-          month: month,
+          date: date,
           user: {
             OR: [
               { id: userId },
@@ -103,18 +95,14 @@ export const findPostedUsersByMonth = async ({
 
 export const registerDiary = async ({
   userId,
-  year,
-  month,
-  day,
+  date,
   contents,
 }: TRegisterDiary) => {
   const checkAlreadyExist = await prisma.diary.findUnique({
     where: {
-      year_month_day_userId: {
+      date_userId: {
         userId,
-        year,
-        month,
-        day,
+        date,
       },
     },
   });
@@ -125,11 +113,9 @@ export const registerDiary = async ({
         contents: contents,
       },
       where: {
-        year_month_day_userId: {
+        date_userId: {
           userId,
-          year,
-          month,
-          day,
+          date,
         },
       },
     });
@@ -138,9 +124,7 @@ export const registerDiary = async ({
   return await prisma.diary.create({
     data: {
       userId,
-      year,
-      month,
-      day,
+      date,
       contents,
     },
   });

@@ -42,6 +42,7 @@ export const Calendar = () => {
         userId: user?.id,
         year: TODAY.year,
         month: TODAY.month,
+        date: TODAY.date,
       }),
     )
 
@@ -55,7 +56,7 @@ export const Calendar = () => {
     )
   }, [user, dispatch])
 
-  if (!usersList) return null
+  if (usersList === undefined) return null
 
   return (
     <div className='w-[672px] border border-solid border-black'>

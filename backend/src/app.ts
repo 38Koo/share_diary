@@ -42,7 +42,11 @@ app.get("/api/check/user", async (req, res) => {
   }
 
   const user = await findUserByEmail({ email });
-  res.status(200).json(user);
+  if (!!user && user.id !== undefined) {
+    res.status(200).json(user);
+  } else {
+    res.status(404).json(null);
+  }
 });
 
 app.get("/api/find/user", async (req, res) => {
@@ -62,8 +66,9 @@ app.post("/api/apply/follow", async (req, res) => {
 
   try {
     const applyFollow = await ApplyForFollow({ userId, followId });
-    if (applyFollow !== null) {
-      res.status(500).json({ message: "already requested a follow" });
+    if (!applyFollow || applyFollow.id !== undefined) {
+      res.status(200).json({ message: "already requested a follow" });
+      return;
     }
 
     res.status(200).json(applyFollow);
@@ -74,23 +79,18 @@ app.post("/api/apply/follow", async (req, res) => {
 });
 
 app.get("/api/find/postedUsers", async (req, res) => {
-  const { userId, year, month } = req.query;
+  const { userId, date } = req.query;
+  console.log(userId, date);
 
   try {
-    if (
-      typeof userId !== "string" ||
-      typeof year !== "string" ||
-      typeof month !== "string"
-    )
+    if (typeof userId !== "string" || typeof date !== "string")
       throw new Error();
 
-    if (isNaN(Number(userId)) || isNaN(Number(year)) || isNaN(Number(month)))
-      throw new Error();
+    if (isNaN(Number(userId))) throw new Error();
 
     const users = await findPostedUsersByMonth({
       userId: Number(userId),
-      year: Number(year),
-      month: Number(month),
+      date,
     });
     res.status(200).json(users);
   } catch (e) {
@@ -100,30 +100,17 @@ app.get("/api/find/postedUsers", async (req, res) => {
 });
 
 app.get("/api/find/diaries", async (req, res) => {
-  const { userId, year, month, day } = req.query;
+  const { userId, date } = req.query;
 
   try {
-    if (
-      typeof userId !== "string" ||
-      typeof year !== "string" ||
-      typeof month !== "string" ||
-      typeof day !== "string"
-    )
+    if (typeof userId !== "string" || typeof date !== "string")
       throw new Error();
 
-    if (
-      isNaN(Number(userId)) ||
-      isNaN(Number(year)) ||
-      isNaN(Number(month)) ||
-      isNaN(Number(day))
-    )
-      throw new Error();
+    if (isNaN(Number(userId))) throw new Error();
 
     const diaries = await diariesListByDay({
       userId: Number(userId),
-      year: Number(year),
-      month: Number(month),
-      day: Number(day),
+      date,
     });
     res.status(200).json(diaries);
   } catch (e) {
@@ -133,10 +120,10 @@ app.get("/api/find/diaries", async (req, res) => {
 });
 
 app.post("/api/register/diary", async (req, res) => {
-  const { year, month, day, userId, contents } = req.body;
+  const { date, userId, contents } = req.body;
 
   try {
-    const diary = await registerDiary({ year, month, day, userId, contents });
+    const diary = await registerDiary({ date, userId, contents });
     res.status(200).json(diary);
   } catch (e) {
     console.error(e);

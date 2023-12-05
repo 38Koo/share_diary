@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { DATE } from '../../../../../const/const'
 import { AuthUserContext } from '../../../../../context/AuthUserContext'
 import { ShowIndexContext } from '../../../../../context/ShowIndexContext'
-import { UsersList } from '../../../../../redux/thisMonthDiaries/slice'
+import { PostedUsers } from '../../../../../redux/todaysDiaries/slice'
 import {
   DateWithoutDay,
   MONTH_NAME,
@@ -13,7 +13,7 @@ import { isLeapYear } from '../../utils/isLeapYear'
 import { onClickFromThisMonth } from '../helpers/onClickFromThisMonth'
 
 type CalendarThisMonthProps = DateWithoutDay & {
-  usersList: UsersList
+  usersList: PostedUsers
 }
 
 export const CalendarThisMonth = ({
@@ -54,7 +54,7 @@ export const CalendarThisMonth = ({
       date={dateFromList}
       selected={dateFromList === date}
       isThisMonth
-      users={usersList[dateFromList - 1]}
+      users={usersList[dateFromList]}
       onClick={() =>
         onClickFromThisMonth(
           year,
