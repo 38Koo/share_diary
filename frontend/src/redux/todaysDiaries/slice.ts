@@ -2,6 +2,7 @@ import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
+import { formatDateForBE } from '../../component/helper/date'
 import { FullDate } from '../../types/types'
 import { todaysDiariesReducer } from './reducers/todaysDiariesReducer'
 
@@ -56,7 +57,11 @@ export const fetchDiariesAsyncByLanding =
       if (userId === undefined) return
 
       const response = await fetch(
-        `http://localhost:4000/api/find/diaries?userId=${userId}&year=${year}&month=${month}&day=${date}`,
+        `http://localhost:4000/api/find/diaries?userId=${userId}&date=${formatDateForBE(
+          year,
+          month,
+          date,
+        )}`,
       )
       const data = await response.json()
 
