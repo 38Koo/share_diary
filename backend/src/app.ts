@@ -80,7 +80,6 @@ app.post("/api/apply/follow", async (req, res) => {
 
 app.get("/api/find/postedUsers", async (req, res) => {
   const { userId, date } = req.query;
-  console.log(userId, date);
 
   try {
     if (typeof userId !== "string" || typeof date !== "string")

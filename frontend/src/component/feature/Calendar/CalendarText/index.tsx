@@ -3,13 +3,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { User } from '../../../../context/AuthUserContext'
 import { ShowIndexContext } from '../../../../context/ShowIndexContext'
-import {
-  Diaries,
-  Diary,
-  UsersWithDiaries,
-} from '../../../../redux/todaysDiaries/slice'
+import { UsersWithDiaries } from '../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../types/types'
 import { Text } from '../../../base/Text'
 import { ChangeModeButton } from './ChangeModeButton'
