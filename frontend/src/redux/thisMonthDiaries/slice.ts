@@ -8,6 +8,7 @@ import {
   formatDateForFE,
 } from '../../component/helper/date'
 import { FullDate } from '../../types/types'
+import { fetchUsersListAsyncByUserActionsReducer } from './reducers/fetchUsersListAsyncByUserActionsReducer'
 
 export type UsersListInitialState = {
   usersList: DiariesForCalender
@@ -52,25 +53,13 @@ export const fetchUsersListAsyncByLanding =
     },
   )
 
-export const fetchUsersListAsyncByUserActions =
-  createAsyncThunk(
-    'usersList/fetchUsersListAsyncByUserActions',
-    async ({
-      year,
-      month,
-    }: Pick<FullDate, 'year' | 'month'>) => {
-      const response = await fetch(
-        `/api/v1/thisMonthUsers?year=${year}&month=${month}`,
-      )
-      const data = await response.json()
-      return data
-    },
-  )
-
 const thisMonthDiariesSlice = createSlice({
   name: 'thisMonthDiaries',
   initialState,
-  reducers: {},
+  reducers: {
+    fetchUsersListAsyncByUserActions:
+      fetchUsersListAsyncByUserActionsReducer,
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchUsersListAsyncByLanding.pending,
@@ -93,27 +82,12 @@ const thisMonthDiariesSlice = createSlice({
         state.isLoading = false
       },
     )
-    builder.addCase(
-      fetchUsersListAsyncByUserActions.pending,
-      (state) => {
-        state.isLoading = true
-      },
-    )
-    builder.addCase(
-      fetchUsersListAsyncByUserActions.fulfilled,
-      (state, action) => {
-        state.isLoading = false
-        state.usersList = action.payload
-      },
-    )
-    builder.addCase(
-      fetchUsersListAsyncByUserActions.rejected,
-      (state) => {
-        state.isLoading = false
-      },
-    )
   },
 })
+
+export const {
+  fetchUsersListAsyncByUserActions,
+} = thisMonthDiariesSlice.actions
 
 export const selectThisMonthDiaries = (
   state: any,
