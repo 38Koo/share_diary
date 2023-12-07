@@ -4,6 +4,7 @@ import {
 } from '@reduxjs/toolkit'
 import { formatDateForBE } from '../../component/helper/date'
 import { FullDate } from '../../types/types'
+import { fetchDiariesAsyncByUserActionsReducer } from './reducers/fetchDiariesAsyncByUserActionsReducer'
 import { todaysDiariesReducer } from './reducers/todaysDiariesReducer'
 
 export type Diary = {
@@ -74,6 +75,8 @@ const todaysDiariesSlice = createSlice({
   initialState,
   reducers: {
     todaysDiaries: todaysDiariesReducer,
+    fetchDiariesAsyncByUserActions:
+      fetchDiariesAsyncByUserActionsReducer,
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -93,8 +96,10 @@ const todaysDiariesSlice = createSlice({
   },
 })
 
-export const { todaysDiaries } =
-  todaysDiariesSlice.actions
+export const {
+  todaysDiaries,
+  fetchDiariesAsyncByUserActions,
+} = todaysDiariesSlice.actions
 
 export const selectTodaysDiaries = (state: any) =>
   state.todaysDiaries

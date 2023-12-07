@@ -39,9 +39,10 @@ export default function FindFriends() {
         `http://localhost:4000/api/find/user?accountId=${ref.current.value}`,
       )
 
-      const user = await userResponse.json()
+      const userByAccountId =
+        await userResponse.json()
 
-      setFriendData(user)
+      setFriendData(userByAccountId)
     } catch (e) {
       console.error(e)
     }
