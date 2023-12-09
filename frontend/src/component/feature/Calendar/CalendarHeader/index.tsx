@@ -5,6 +5,7 @@ import {
 } from 'react'
 import { useDispatch } from 'react-redux'
 import { TODAY } from '../../../../const/const'
+import { AuthUserContext } from '../../../../context/AuthUserContext'
 import { ShowIndexContext } from '../../../../context/ShowIndexContext'
 import {
   decrementMonth,
@@ -20,6 +21,10 @@ import {
 import { ChevronLeftButton } from '../../../base/Button/ChevronLeftButton'
 import { ChevronRightButton } from '../../../base/Button/ChevronRightButton'
 import { Text } from '../../../base/Text'
+import {
+  formatDateForBE,
+  formatDateForFE,
+} from '../../../helper/date'
 import { canSelectableYear } from '../utils/canSelectableYear'
 
 export const CalendarHeader = ({
@@ -34,44 +39,80 @@ export const CalendarHeader = ({
     ShowIndexContext,
   )
 
+  const user = useContext(AuthUserContext)
+
   const dispatch = useDispatch<AppDispatch>()
 
-  const onClickPrevious = () => {
+  const onClickPrevious = async () => {
     try {
+      setShowIndex(0)
+
+      if (user?.id === undefined) return
+
+      const postedUserResponse = await fetch(
+        `http://localhost:4000/api/find/postedUsers?userId=${
+          user.id
+        }&date=${formatDateForBE(
+          month === MONTH_NAME.JANUARY
+            ? year - 1
+            : year,
+          month === MONTH_NAME.JANUARY
+            ? MONTH_NAME.DECEMBER
+            : month - 1,
+          date,
+        )}`,
+      )
+
+      const postedUserData =
+        await postedUserResponse.json()
+
+      const postedUser = formatDateForFE(
+        postedUserData,
+      )
+
       dispatch(decrementMonth())
       dispatch(
-        fetchUsersListAsyncByUserActions({
-          year:
-            year === MONTH_NAME.JANUARY
-              ? year - 1
-              : year,
-          month:
-            month === MONTH_NAME.JANUARY
-              ? MONTH_NAME.NOVEMBER
-              : month - 1,
-        }),
+        fetchUsersListAsyncByUserActions(
+          postedUser,
+        ),
       )
-      setShowIndex(0)
     } catch (e) {
       console.error(e)
     }
   }
-  const onClickNext = () => {
+  const onClickNext = async () => {
     try {
+      setShowIndex(0)
+
+      if (user?.id === undefined) return
+
+      const postedUserResponse = await fetch(
+        `http://localhost:4000/api/find/postedUsers?userId=${
+          user.id
+        }&date=${formatDateForBE(
+          month === MONTH_NAME.DECEMBER
+            ? year + 1
+            : year,
+          month === MONTH_NAME.DECEMBER
+            ? MONTH_NAME.JANUARY
+            : month + 1,
+          date,
+        )}`,
+      )
+
+      const postedUserData =
+        await postedUserResponse.json()
+
+      const postedUser = formatDateForFE(
+        postedUserData,
+      )
+
       dispatch(incrementMonth())
       dispatch(
-        fetchUsersListAsyncByUserActions({
-          year:
-            year === MONTH_NAME.DECEMBER
-              ? year + 1
-              : year,
-          month:
-            month === MONTH_NAME.DECEMBER
-              ? MONTH_NAME.JANUARY
-              : month + 1,
-        }),
+        fetchUsersListAsyncByUserActions(
+          postedUser,
+        ),
       )
-      setShowIndex(0)
     } catch (e) {
       console.error(e)
     }
@@ -79,6 +120,7 @@ export const CalendarHeader = ({
 
   const onChangeYear = (selectYear: number) => {
     try {
+      // FIXME: diariesも一緒に取得する
       dispatch(updateYearByAmount(selectYear))
       dispatch(
         fetchUsersListAsyncByUserActions({
