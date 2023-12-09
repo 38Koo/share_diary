@@ -9,7 +9,10 @@ import {
 } from '../../../../../redux/thisMonthDiaries/slice'
 import { fetchDiariesAsyncByUserActions } from '../../../../../redux/todaysDiaries/slice'
 import { DateWithoutDay } from '../../../../../types/types'
-import { formatDateForBE } from '../../../../helper/date'
+import {
+  formatDateForBE,
+  formatDateForFE,
+} from '../../../../helper/date'
 
 export const onClickFromNotThisMonth = async (
   dateInfo: DateWithoutDay,
@@ -42,15 +45,19 @@ export const onClickFromNotThisMonth = async (
     const diaries = await diariesResponse.json()
 
     const postedUserResponse = await fetch(
-      `http://localhost:4000/api/find/postedUsers?userId=${userId}$date=${formatDateForBE(
+      `http://localhost:4000/api/find/postedUsers?userId=${userId}&date=${formatDateForBE(
         dateInfo.year,
         dateInfo.month,
         dateInfo.date,
       )}`,
     )
 
-    const postedUser =
+    const postedUserData =
       await postedUserResponse.json()
+
+    const postedUser = formatDateForFE(
+      postedUserData,
+    )
 
     dispatch(
       updateDateWithoutDayByClick({
