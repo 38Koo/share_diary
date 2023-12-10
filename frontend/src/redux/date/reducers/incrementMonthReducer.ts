@@ -1,5 +1,8 @@
 import { TODAY } from '../../../const/const'
-import { DateWithoutDay } from '../../../types/types'
+import {
+  DateWithoutDay,
+  MONTH_NAME,
+} from '../../../types/types'
 
 export const incrementMonthReducer = (
   state: DateWithoutDay,
@@ -14,7 +17,7 @@ export const incrementMonthReducer = (
     return {
       ...state,
       year: state.year + 1,
-      month: 0,
+      month: MONTH_NAME.JANUARY,
       date: 1,
     }
 

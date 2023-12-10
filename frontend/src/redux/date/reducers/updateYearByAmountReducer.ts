@@ -15,5 +15,6 @@ export const updateYearByAmountReducer = (
   return {
     ...state,
     year: action.payload,
+    date: 1,
   }
 }

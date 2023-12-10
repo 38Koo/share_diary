@@ -16,7 +16,6 @@ type UsersSliderProps = {
 }
 
 export const UsersSlider = ({
-  date,
   isEditMode,
   diariesByDay,
   showIndex,
