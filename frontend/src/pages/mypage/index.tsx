@@ -3,6 +3,7 @@ import {
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { Text } from '../../component/base/Text'
@@ -23,20 +24,18 @@ export default function MyPage() {
           {data?.user?.name ?? ''}
         </Text>
         <div className='space-x-4'>
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className='h-8'
-            onClick={() =>
-              router.push('/find-friends/')
-            }
-          />
-          <FontAwesomeIcon
-            icon={faUserFriends}
-            className='h-8'
-            onClick={() =>
-              router.push('/friends/')
-            }
-          />
+          <Link href='/find-friends/'>
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className='h-8'
+            />
+          </Link>
+          <Link href='/friends/'>
+            <FontAwesomeIcon
+              icon={faUserFriends}
+              className='h-8'
+            />
+          </Link>
         </div>
       </div>
     </CommonPageLayout>
