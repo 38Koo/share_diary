@@ -30,3 +30,26 @@ export const ApplyForFollow = async ({ userId, followId }: TApplyForFollow) => {
     },
   });
 };
+
+export const FindFollowUsers = async (userId: number) => {
+  return await prisma.follower.findMany({
+    where: {
+      followedById: userId,
+      status: "APPROVED",
+    },
+    include: {
+      user: true,
+    },
+  });
+};
+
+export const FindFollowers = async (userId: number) => {
+  return await prisma.follower.findMany({
+    where: {
+      userId: userId,
+    },
+    include: {
+      followedBy: true,
+    },
+  });
+};

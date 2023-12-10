@@ -10,7 +10,11 @@ import {
   registerDiary,
 } from "./prisma/client/diary";
 import cors from "cors";
-import { ApplyForFollow } from "./prisma/client/follower";
+import {
+  ApplyForFollow,
+  FindFollowUsers,
+  FindFollowers,
+} from "./prisma/client/follower";
 
 const app = express();
 
@@ -126,6 +130,36 @@ app.post("/api/register/diary", async (req, res) => {
     res.status(200).json(diary);
   } catch (e) {
     console.error(e);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.get("/api/find/follows", async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    if (typeof userId !== "string") throw new Error();
+
+    if (isNaN(Number(userId))) throw new Error();
+
+    const follows = await FindFollowUsers(Number(userId));
+    res.status(200).json(follows);
+  } catch (e) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.get("/api/find/followers", async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    if (typeof userId !== "string") throw new Error();
+
+    if (isNaN(Number(userId))) throw new Error();
+
+    const followers = await FindFollowers(Number(userId));
+    res.status(200).json(followers);
+  } catch (e) {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });

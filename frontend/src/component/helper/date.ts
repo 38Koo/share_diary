@@ -59,3 +59,9 @@ export const formatDateForFE = (
     {},
   )
 }
+
+export const formatDateForFirstDate = (
+  fullDate: string,
+) => {
+  return fullDate.substring(0, 6) + '01'
+}

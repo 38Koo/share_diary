@@ -16,6 +16,21 @@ export type Diary = {
   unopened: boolean
 }
 
+export type FollowFriend = {
+  id: number
+  userId: number
+  followedById: number
+  createdAt: string
+  updatedAt: string
+  status: string
+  user: PostedUser
+}
+
+export type Follower = Omit<
+  FollowFriend,
+  'user'
+> & { followedBy: PostedUser }
+
 // FIXME: 宣言場所変更
 export type PostedUser = {
   id: number
