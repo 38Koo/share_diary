@@ -11,7 +11,9 @@ import {
 } from "./prisma/client/diary";
 import cors from "cors";
 import {
+  AcceptFollow,
   ApplyForFollow,
+  DenyFollow,
   FindFollowUsers,
   FindFollowers,
 } from "./prisma/client/follower";
@@ -160,6 +162,30 @@ app.get("/api/find/followers", async (req, res) => {
     const followers = await FindFollowers(Number(userId));
     res.status(200).json(followers);
   } catch (e) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.post("/api/accept/apply", async (req, res) => {
+  const { userId, followedById } = req.body;
+
+  try {
+    const acceptFollow = await AcceptFollow(userId, followedById);
+    res.status(200).json(acceptFollow);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.post("/api/deny/apply", async (req, res) => {
+  const { userId, followedById } = req.body;
+
+  try {
+    const denyFollow = await DenyFollow(userId, followedById);
+    res.status(200).json(denyFollow);
+  } catch (e) {
+    console.error(e);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });

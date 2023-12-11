@@ -53,3 +53,28 @@ export const FindFollowers = async (userId: number) => {
     },
   });
 };
+
+export const AcceptFollow = async (userId: number, followedById: number) => {
+  return await prisma.follower.update({
+    data: {
+      status: "APPROVED",
+    },
+    where: {
+      userId_followedById: {
+        userId,
+        followedById,
+      },
+    },
+  });
+};
+
+export const DenyFollow = async (userId: number, followedById: number) => {
+  return await prisma.follower.delete({
+    where: {
+      userId_followedById: {
+        userId,
+        followedById,
+      },
+    },
+  });
+};

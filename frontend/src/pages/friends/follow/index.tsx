@@ -3,7 +3,7 @@ import { FriendsList } from '../../../component/feature/MyPage/FriendsList'
 
 export default function FriendsFollow() {
   return (
-    <CommonPageLayout title='Your Friends'>
+    <CommonPageLayout title='Your Friends - Follow'>
       <FriendsList isFollower={false} />
     </CommonPageLayout>
   )

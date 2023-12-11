@@ -21,7 +21,13 @@ export const CommonPageLayout = ({
           >
             {title}
           </Text>
-          <div className='flex h-48 w-96  items-center justify-center rounded-xl border border-red-600'>
+          <div
+            className='
+              flex h-48 w-96 
+              items-center justify-center overflow-auto
+              rounded-xl border border-red-600 pt-10
+            '
+          >
             {children}
           </div>
         </div>

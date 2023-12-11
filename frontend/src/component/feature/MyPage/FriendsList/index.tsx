@@ -41,10 +41,8 @@ export const FriendsList = ({
 
   if (!user) return
 
-  console.log(friendsList)
-
   return (
-    <div className='flex space-x-6'>
+    <div className='grid grid-cols-2 gap-x-12 gap-y-6'>
       {friendsList.map((friend) => {
         return isFollower ? (
           <FollowerFriendListItem
