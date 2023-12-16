@@ -23,13 +23,15 @@ export const AuthUserProvider = ({
   const [user, setUser] = useState<User | null>(
     null,
   )
-
   const { data } = useSession()
 
   useEffect(() => {
+    if (!data) return
     const fetchUser = async () => {
       const authUserResponse = await fetch(
-        `http://localhost:4000/api/check/user?email=${data?.user?.email}`,
+        `http://localhost:4000/api/check/user?email=${
+          data?.user?.email ?? ''
+        }`,
       )
 
       const authUser =
