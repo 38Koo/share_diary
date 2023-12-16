@@ -1,10 +1,12 @@
 import {
   faMagnifyingGlass,
+  faRightFromBracket,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
+import { signOut } from 'next-auth/react'
 import { useContext } from 'react'
 import { Text } from '../../component/base/Text'
 import { CommonPageLayout } from '../../component/feature/CommonPageLayout'
@@ -51,6 +53,11 @@ export default function MyPage() {
               className='h-8'
             />
           </Link>
+          <FontAwesomeIcon
+            icon={faRightFromBracket}
+            className='h-8'
+            onClick={() => signOut()}
+          />
         </div>
       </div>
     </CommonPageLayout>
